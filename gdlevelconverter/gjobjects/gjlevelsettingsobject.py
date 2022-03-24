@@ -4,7 +4,7 @@ Definition for GJLevelSettingsObject
 
 from typing import Optional
 
-from .conversion import LevelSettingsColorConversions
+from ..conversion import LevelSettingsColorConversions
 from .gjcolorobject import GJColorObject
 from . import gjdictionary
 

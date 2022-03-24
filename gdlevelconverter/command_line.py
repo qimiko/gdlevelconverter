@@ -7,8 +7,8 @@ import collections
 from pathlib import Path
 
 from .gjobjects import GJClient, GJGameLevel
-from . import ConversionReport, ConversionOptions
-from . import GJGameObjectConversionGroupsByName, GJGameObjectConversionSubGroups
+from .conversion import ConversionReport, ConversionOptions
+from .conversion import GJGameObjectConversionGroupsByName, GJGameObjectConversionSubGroups
 
 
 def load_level_from_target(target: str):
