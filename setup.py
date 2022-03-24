@@ -12,7 +12,7 @@ setup(
 		'console_scripts': ['gd-level-converter=gdlevelconverter.command_line:_main']
 	},
 	author='zmx',
-	description='Geometry Dash level conversion tools',
+	description='2.0+ to 1.9 Geometry Dash level conversion tool',
 	install_requires=[
 		"setuptools"
 	],
