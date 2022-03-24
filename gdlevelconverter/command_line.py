@@ -6,13 +6,9 @@ import argparse
 import collections
 from pathlib import Path
 
-from .gjobjects import GJClient
-from .gjobjects.conversion import ConversionReport
-from .gjobjects.conversion import ConversionOptions
-from .gjobjects.conversion \
-    import GJGameObjectConversionGroupsByName, GJGameObjectConversionSubGroups
-
-from .gjobjects import GJGameLevel
+from .gjobjects import GJClient, GJGameLevel
+from . import ConversionReport, ConversionOptions
+from . import GJGameObjectConversionGroupsByName, GJGameObjectConversionSubGroups
 
 
 def load_level_from_target(target: str):

@@ -5,8 +5,7 @@ Defines GJLevelString class
 import base64
 import gzip
 import zlib
-from .conversion.conversionoptions import ConversionOptions
-from .conversion.conversionreport import ConversionReport
+from .conversion import ConversionOptions, ConversionReport
 from .gjgameobject import GJGameObject
 from .gjlevelsettingsobject import GJLevelSettingsObject
 

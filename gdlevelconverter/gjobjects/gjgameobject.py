@@ -4,10 +4,9 @@ GJGameObject class definition
 
 from typing import Optional
 
-from .conversion.gjgameobjectconversiongroups.\
-    gjgameobjectconversiongroup import GJGameObjectConversionGroup
-from .conversion.triggerobjectcolorconversions import TriggerObjectColorConversions
-from .enums.gjcustomcolortype import GJCustomColorType
+from .conversion import GJGameObjectConversionGroup
+from .conversion import TriggerObjectColorConversions
+from .enums import GJCustomColorType
 from . import gjdictionary
 
 

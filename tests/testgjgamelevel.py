@@ -4,7 +4,7 @@ Defines test cases for GJGameLevel
 
 import unittest
 import pathlib
-from gdlevelconverter.gjobjects.gjgamelevel import GJGameLevel
+from gdlevelconverter.gjobjects import GJGameLevel
 
 
 class TestGJGameLevel(unittest.TestCase):

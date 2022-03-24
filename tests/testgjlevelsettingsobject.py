@@ -5,7 +5,7 @@ Defines GJLevelSettingsObject test cases
 
 import unittest
 
-from gdlevelconverter.gjobjects.gjlevelsettingsobject import GJLevelSettingsObject
+from gdlevelconverter.gjobjects import GJLevelSettingsObject
 
 
 class TestGJLevelSettingsObject(unittest.TestCase):

@@ -5,8 +5,7 @@ Defines conversion options class
 from dataclasses import dataclass
 
 from ..gjgameobject import GJGameObject
-from .gjgameobjectconversiongroups.gjgameobjectconversiongroup \
-    import GJGameObjectConversionGroup
+from . import GJGameObjectConversionGroup
 
 
 @dataclass
