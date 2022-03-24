@@ -8,7 +8,7 @@ setup(
     name='gdlevelconverter',
     version='1.0',
     packages=find_packages(),
-    entry_points = {
+    entry_points={
         'console_scripts': ['gd-level-converter=gdlevelconverter.command_line:_main']
     },
     author='zmx',
