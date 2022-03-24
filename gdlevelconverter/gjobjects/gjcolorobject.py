@@ -9,6 +9,9 @@ class GJColorObject(gjdictionary.GJDictionary):
     """
     Deserialized representation of Geometry Dash color strings
     """
+
+    # pylint: disable=too-few-public-methods
+
     _definitions = [
         gjdictionary.ObjectDefinition(
             key="red", index="1", deserialize_as=int),

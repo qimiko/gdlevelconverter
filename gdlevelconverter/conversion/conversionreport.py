@@ -5,12 +5,13 @@ Defines conversion options class
 from dataclasses import dataclass
 from typing import Generic, TypeVar
 
-from . import GJGameObjectConversionGroup
+from .gjgameobjectconversiongroups.gjgameobjectconversiongroup import GJGameObjectConversionGroup
 
-
-TYPE = TypeVar("TYPE")
 
 # hacky circular import fix
+TYPE = TypeVar("TYPE")
+
+
 @dataclass
 class ConversionReport(Generic[TYPE]):
     """

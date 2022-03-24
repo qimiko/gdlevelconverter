@@ -15,6 +15,10 @@ class GJGameLevel(gjdictionary.GJDictionary):
     """
     Deserialized representation of a Geometry Dash level
     """
+
+    # pylint: disable=too-many-instance-attributes
+    # Geometry Dash levels are known to break convention.
+
     _definitions = [
         gjdictionary.ObjectDefinition(key="level_id", index="1"),
         gjdictionary.ObjectDefinition(key="name", index="2"),
