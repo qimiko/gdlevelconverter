@@ -13,6 +13,6 @@ GroupGroundSpikes = GJGameObjectConversionGroup(
         GJGameObjectConversion(1713, 135),
         GJGameObjectConversion(1714, 135),
     ],
-		show_hitbox_warning=True,
-		show_visual_warning=True
+    show_hitbox_warning=True,
+    show_visual_warning=True
 )
