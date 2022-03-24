@@ -5,7 +5,8 @@ Defines GJLevelString class
 import base64
 import gzip
 import zlib
-from .conversion import ConversionOptions, ConversionReport
+from ..conversion.conversionoptions import ConversionOptions
+from ..conversion.conversionreport import ConversionReport
 from .gjgameobject import GJGameObject
 from .gjlevelsettingsobject import GJLevelSettingsObject
 
@@ -35,7 +36,7 @@ class GJLevelString:
         self.header.to_legacy_format()
 
         # step 2, convert objects
-        report = ConversionReport(
+        report = ConversionReport[GJGameObject](
             converted_triggers=[],
             group_conversions={x: [] for x in conversion_options.groups},
             removed_objects=[],
