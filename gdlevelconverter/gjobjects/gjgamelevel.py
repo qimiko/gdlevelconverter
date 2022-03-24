@@ -68,70 +68,32 @@ class GJGameLevel(gjdictionary.GJDictionary):
         # in the documentation, they call this an "idiom". guess why
         element_dict = {k.text: v.text for k, v in zip(*[iter(root)]*2)}
 
-        if not "kCEK" in element_dict or int(element_dict["kCEK"]) != 4:
+        if "kCEK" not in element_dict or int(element_dict["kCEK"]) != 4:
             raise ValueError("gmd file is not representing a gameobject")
 
         # in the future i might make this as part of the gjdictionary class
         # i didn't feel it was necessary as this is only used once
-        if "k1" in element_dict:
-            instance.level_id = int(element_dict["k1"])
-        else:
-            instance.level_id = 0
+        instance.level_id = int(element_dict.get("k1", 0))
+        instance.name = element_dict.get("k2", "Unknown")
 
-        if "k2" in element_dict:
-            instance.name = element_dict["k2"]
-        else:
-            instance.name = "Unknown"
-
-        if "k3" in element_dict:
+        description = element_dict.get("k3", None)
+        if description:
             # gmd files are double decoded, for some reason
-            instance.description = base64.urlsafe_b64decode(element_dict["k3"]).decode()
+            instance.description = base64.urlsafe_b64decode(description).decode()
         else:
-            instance.description = ""
+            description = ""
 
-        if "k4" in element_dict:
-            instance.level_string = GJLevelString.from_encoded(
-                element_dict["k4"])
+        # if this doesn't exist this should error
+        instance.level_string = GJLevelString.from_encoded(element_dict["k4"])
 
-        if "k8" in element_dict:
-            instance.audio_track = int(element_dict["k8"])
-        else:
-            instance.audio_track = 1
-
-        if "k16" in element_dict:
-            instance.version = int(element_dict["k16"])
-        else:
-            instance.version = 1
-
-        if "k23" in element_dict:
-            instance.length = int(element_dict["k23"])
-        else:
-            instance.length = 1
-
-        if "k33" in element_dict:
-            instance.auto = int(element_dict["k33"])
-        else:
-            instance.auto = 1
-
-        if "k43" in element_dict:
-            instance.two_player = int(element_dict["k43"])
-        else:
-            instance.two_player = 0
-
-        if "k45" in element_dict:
-            instance.custom_song_track = int(element_dict["k45"])
-        else:
-            instance.custom_song_track = 0
-
-        if "k50" in element_dict:
-            instance.binary_version = int(element_dict["k50"])
-        else:
-            instance.binary_version = 35
-
-        if "k67" in element_dict:
-            instance.capacity_string = element_dict["k67"]
-        else:
-            instance.capacity_string = ""
+        instance.audio_track = int(element_dict.get("k8", 1))
+        instance.version = int(element_dict.get("k16", 1))
+        instance.length = int(element_dict.get("k23", 0))
+        instance.auto = int(element_dict.get("k33", 0))
+        instance.two_player = int(element_dict.get("k43", 0))
+        instance.custom_song_track = int(element_dict.get("k45", 0))
+        instance.binary_version = int(element_dict.get("k50", 35))
+        instance.capacity_string = element_dict.get("k67", "")
 
         return instance
 
