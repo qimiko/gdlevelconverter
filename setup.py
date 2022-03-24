@@ -4,7 +4,9 @@ Setup script for pip
 
 from setuptools import setup, find_packages
 
-with open("README.md", "r", encoding="utf-8") as readme_file:
+README_PATH = "README.md"
+
+with open(README_PATH, "r", encoding="utf-8") as readme_file:
     readme = readme_file.read()
 
 setup(
