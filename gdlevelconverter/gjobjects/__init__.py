@@ -2,5 +2,7 @@
 Exports ConversionOptions and ConversionReport class
 """
 
-from .conversion.conversionoptions import ConversionOptions
-from .conversion.conversionreport import ConversionReport
+from .gjclient import GJClient
+from .gjgamelevel import GJGameLevel
+
+__all__ = ["GJClient", "GJGameLevel"]
