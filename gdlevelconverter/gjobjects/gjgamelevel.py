@@ -85,7 +85,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
             # gmd files are double decoded, for some reason
             instance.description = base64.urlsafe_b64decode(description).decode()
         else:
-            description = ""
+            instance.description = ""
 
         # if this doesn't exist this should error
         instance.level_string = GJLevelString.from_encoded(element_dict["k4"])
