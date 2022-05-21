@@ -9,6 +9,7 @@ from ..conversion.conversionoptions import ConversionOptions
 from ..conversion.conversionreport import ConversionReport
 from .gjgameobject import GJGameObject
 from .gjlevelsettingsobject import GJLevelSettingsObject
+from typing import List
 
 
 class GJLevelString:
@@ -18,7 +19,7 @@ class GJLevelString:
     OBJECT_SEPARATOR: str = ";"
 
     header: GJLevelSettingsObject
-    objects: list[GJGameObject]
+    objects: List[GJGameObject]
 
     def __init__(self, level):
         object_strings = level.split(self.OBJECT_SEPARATOR)

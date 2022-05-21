@@ -3,6 +3,7 @@ Defines conversions for color triggers to their legacy triggers
 """
 
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass(frozen=True)
@@ -14,7 +15,7 @@ class TriggerObjectColorConversion():
     result_id: int
 
 
-TriggerObjectColorConversions: list[TriggerObjectColorConversion] = [
+TriggerObjectColorConversions: List[TriggerObjectColorConversion] = [
     TriggerObjectColorConversion(1, 221),
     TriggerObjectColorConversion(2, 717),
     TriggerObjectColorConversion(3, 718),

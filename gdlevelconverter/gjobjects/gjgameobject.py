@@ -2,7 +2,7 @@
 GJGameObject class definition
 """
 
-from typing import Optional
+from typing import Optional, List
 
 from ..conversion import GJGameObjectConversionGroup
 from ..conversion import TriggerObjectColorConversions
@@ -67,7 +67,7 @@ class GJGameObject(gjdictionary.GJDictionary):
 
     def remap_to_legacy_id_by_groups(
         self,
-        groups: list[GJGameObjectConversionGroup]
+        groups: List[GJGameObjectConversionGroup]
     ) -> Optional[GJGameObjectConversionGroup]:
         """
         Remaps the object's id based on the ids defined in groups
