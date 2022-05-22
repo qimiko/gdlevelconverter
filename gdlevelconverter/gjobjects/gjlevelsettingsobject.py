@@ -2,7 +2,7 @@
 Definition for GJLevelSettingsObject
 """
 
-from typing import Optional, List, Dict
+from typing import Optional, List
 
 from ..conversion import LevelSettingsColorConversions
 from .gjcolorobject import GJColorObject

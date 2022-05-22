@@ -9,7 +9,6 @@ import xml.etree.ElementTree
 from .gjclient import GJClient
 from .gjlevelstring import GJLevelString
 from . import gjdictionary
-from typing import Dict
 
 
 class GJGameLevel(gjdictionary.GJDictionary):

@@ -5,6 +5,7 @@ Defines conversions for the colors in level settings
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass(frozen=True)
 class LevelSettingsColorConversion():
     """
