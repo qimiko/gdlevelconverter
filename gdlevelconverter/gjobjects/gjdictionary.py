@@ -4,7 +4,7 @@ Functions to aid in conversion to and from a Geometry Dash dictionary type
 
 from abc import abstractmethod
 from dataclasses import dataclass
-from typing import Callable
+from typing import Callable, List, Tuple
 
 
 @dataclass
@@ -34,14 +34,14 @@ class ObjectDefinition:
     """
 
 
-def class_from_string(string: str, splitter: str, definitions: list[ObjectDefinition], cls: object):
+def class_from_string(string: str, splitter: str, definitions: List[ObjectDefinition], cls: object):
     """
     parses the special robtop style array
     - expects string like 1,53,2,65,3,14.3
     - returns dict like {'1': '53', '2': '65', '3': '14.3'}
     """
 
-    split_first_step: list[str] = string.split(splitter)
+    split_first_step: List[str] = string.split(splitter)
 
     for index, _value in enumerate(split_first_step):
         # if odd then we on index
@@ -83,7 +83,7 @@ def from_list(splitter: str):
     Used as value in object definition
     Creates a function that converts a list into string using splitter
     """
-    def into_str(obj: list[any]):
+    def into_str(obj: List[any]):
         # gd ends lists with splitter from what i can tell
         return splitter.join([str(x) for x in obj]) + splitter
 
@@ -104,7 +104,7 @@ class GJDictionary:
 
     @property
     @abstractmethod
-    def _definitions(self) -> list[ObjectDefinition]:
+    def _definitions(self) -> List[ObjectDefinition]:
         """
         Defintions for use when converting to/from dictionary
         """
@@ -127,7 +127,7 @@ class GJDictionary:
     def __info_for_key(self, key: str):
         return next((x for x in self._definitions if x.key == key), None)
 
-    def __map_tuple_key_to_index(self, obj: tuple[str, any]):
+    def __map_tuple_key_to_index(self, obj: Tuple[str, any]):
         (key, value) = obj
 
         key_info = self.__info_for_key(key)

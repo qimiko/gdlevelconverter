@@ -5,7 +5,7 @@ Defines GJClient class
 from dataclasses import dataclass
 import urllib.request
 import urllib.parse
-
+from typing import Dict
 
 @dataclass
 class GJClient:
@@ -20,7 +20,7 @@ class GJClient:
     udid: str = "S-hi-people"
     user_name: str = "21Reupload"
 
-    def make_req(self, url: str, data: dict[str, str]):
+    def make_req(self, url: str, data: Dict[str, str]):
         """
         Makes a post request a url with data
         """

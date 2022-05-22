@@ -5,6 +5,7 @@ Defines GJDictionary test cases using a test object
 import unittest
 
 from gdlevelconverter.gjobjects import gjdictionary
+from typing import List
 
 
 class GJTestObject(gjdictionary.GJDictionary):
@@ -27,7 +28,7 @@ class GJTestObject(gjdictionary.GJDictionary):
 
     title: str
 
-    names: list[str]
+    names: List[str]
 
 
 class TestGJDictionary(unittest.TestCase):

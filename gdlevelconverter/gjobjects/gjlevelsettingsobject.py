@@ -2,7 +2,7 @@
 Definition for GJLevelSettingsObject
 """
 
-from typing import Optional
+from typing import Optional, List, Dict
 
 from ..conversion import LevelSettingsColorConversions
 from .gjcolorobject import GJColorObject
@@ -50,7 +50,7 @@ class GJLevelSettingsObject(gjdictionary.GJDictionary):
     color_4: Optional[GJColorObject]
     color_3dl: Optional[GJColorObject]
 
-    color_list: Optional[list[GJColorObject]]
+    color_list: Optional[List[GJColorObject]]
 
     def to_legacy_format(self) -> bool:
         """

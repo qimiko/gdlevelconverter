@@ -3,7 +3,7 @@ Defines conversions for the colors in level settings
 """
 
 from dataclasses import dataclass
-
+from typing import List
 
 @dataclass(frozen=True)
 class LevelSettingsColorConversion():
@@ -14,7 +14,7 @@ class LevelSettingsColorConversion():
     header_key: str
 
 
-LevelSettingsColorConversions: list[LevelSettingsColorConversion] = [
+LevelSettingsColorConversions: List[LevelSettingsColorConversion] = [
     LevelSettingsColorConversion(1, "color_1"),
     LevelSettingsColorConversion(2, "color_2"),
     LevelSettingsColorConversion(3, "color_3"),
