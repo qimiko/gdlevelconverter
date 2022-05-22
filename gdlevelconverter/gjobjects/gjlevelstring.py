@@ -5,11 +5,11 @@ Defines GJLevelString class
 import base64
 import gzip
 import zlib
+from typing import List
 from ..conversion.conversionoptions import ConversionOptions
 from ..conversion.conversionreport import ConversionReport
 from .gjgameobject import GJGameObject
 from .gjlevelsettingsobject import GJLevelSettingsObject
-from typing import List
 
 
 class GJLevelString:
