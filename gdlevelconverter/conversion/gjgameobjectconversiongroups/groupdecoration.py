@@ -10,6 +10,7 @@ GroupDecoration = GJGameObjectConversionGroup(
     [
         GJGameObjectConversion(1142, 164),
         GJGameObjectConversion(1148, 193),
+        GJGameObjectConversion(1149, 737),
         GJGameObjectConversion(1825, 251),
         GJGameObjectConversion(1889, 191),
         GJGameObjectConversion(1890, 198),
