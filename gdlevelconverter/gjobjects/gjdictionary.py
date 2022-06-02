@@ -43,11 +43,11 @@ def class_from_string(string: str, splitter: str, definitions: List[ObjectDefini
 
     split_first_step: List[str] = string.split(splitter)
 
-    for index, _value in enumerate(split_first_step):
+    for index, current_value in enumerate(split_first_step):
         # if odd then we on index
         if index % 2 == 0:
 
-            index_name = split_first_step[index]
+            index_name = current_value
             value = split_first_step[index + 1]
 
             key = next((x for x in definitions if x.index == index_name), None)
