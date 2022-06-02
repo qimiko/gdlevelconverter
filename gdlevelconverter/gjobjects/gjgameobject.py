@@ -21,7 +21,7 @@ class GJGameObject(gjdictionary.GJDictionary):
         gjdictionary.ObjectDefinition(
             key="object_id", index="1", deserialize_as=int),
         gjdictionary.ObjectDefinition(
-            key="legacy_object_color", index="19", deserialize_as=GJCustomColorType),
+            key="legacy_object_color", index="19"),
         gjdictionary.ObjectDefinition(
             key="line_color", index="21", deserialize_as=int),
         gjdictionary.ObjectDefinition(
