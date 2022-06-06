@@ -4,7 +4,6 @@ GJGameLevel class definition
 
 import base64
 import re
-import xml.etree.ElementTree
 
 from .gjclient import GJClient
 from .gjlevelstring import GJLevelString
@@ -64,13 +63,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
 
         instance = cls()
 
-        root = xml.etree.ElementTree.fromstring(file)
-        if not root.tag == "d":
-            raise ValueError("gmd file is not in plist format")
-
-        # hacky way of parsing the xml into plist
-        # in the documentation, they call this an "idiom". guess why
-        element_dict = {k.text: v.text for k, v in zip(*[iter(root)]*2)}
+        element_dict = gjdictionary.GJDictionary.from_dict_str(file)
 
         if "kCEK" not in element_dict or int(element_dict["kCEK"]) != 4:
             raise ValueError("gmd file is not representing a gameobject")

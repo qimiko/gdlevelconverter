@@ -5,6 +5,7 @@ Functions to aid in conversion to and from a Geometry Dash dictionary type
 from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Callable, List, Tuple
+import xml.etree.ElementTree
 
 
 @dataclass
@@ -119,6 +120,36 @@ class GJDictionary:
         class_from_string(string, cls._splitter, cls._definitions, instance)
 
         return instance
+
+    @classmethod
+    def from_dict_str(cls, string: str):
+        """
+        Parses a dictionary string (as plist) into a dictionary
+        """
+        root = xml.etree.ElementTree.fromstring(string)
+        if not root.tag == "d":
+            raise ValueError("input is not in plist format")
+
+        # hacky way of parsing the xml into plist
+        # in the documentation, they call this an "idiom". guess why
+        element_dict = {k.text: cls._parse_xml_value(v) for k, v in zip(*[iter(root)]*2)}
+        return element_dict
+
+    @staticmethod
+    def _parse_xml_value(val: xml.etree.ElementTree.Element):
+        if val.tag == "t":
+            return True
+
+        if val.tag == "f":
+            return False
+
+        if val.tag == "i":
+            return int(val.text)
+
+        if val.tag == "r":
+            return float(val.text)
+
+        return val.text
 
     def __init__(self, string: str = None):
         if string:
