@@ -9,15 +9,15 @@ from .gjgameobjectconversiongroups.gjgameobjectconversiongroup import GJGameObje
 
 
 # hacky circular import fix
-TYPE = TypeVar("TYPE")
+ObjectType = TypeVar("ObjectType")
 
 
 @dataclass
-class ConversionReport(Generic[TYPE]):
+class ConversionReport(Generic[ObjectType]):
     """
     Options during full level conversion
     """
-    converted_triggers: List[TYPE]
-    group_conversions: Dict[GJGameObjectConversionGroup, List[TYPE]]
-    removed_objects: List[TYPE]
+    converted_triggers: List[ObjectType]
+    group_conversions: Dict[GJGameObjectConversionGroup, List[ObjectType]]
+    removed_objects: List[ObjectType]
     preconversion_object_count: int
