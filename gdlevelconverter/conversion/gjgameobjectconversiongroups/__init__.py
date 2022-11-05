@@ -14,6 +14,7 @@ from .groupgroundhazards import GroupGroundHazards
 from .groupdecoration import GroupDecoration
 from .grouptriggers import GroupTriggers
 from .groupslopes import GroupSlopes
+from .groupcircle import GroupCircle
 
 GJGameObjectConversionGroups = [
     GroupSlopes,
@@ -27,7 +28,8 @@ GJGameObjectConversionGroups = [
     GroupSlabs,
     GroupPillars,
     GroupGroundSpikes,
-    GroupLines
+    GroupLines,
+    GroupCircle
 ]
 
 GJGameObjectConversionGroupsByName = {
