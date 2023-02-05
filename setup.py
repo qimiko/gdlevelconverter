@@ -11,7 +11,7 @@ with open(README_PATH, "r", encoding="utf-8") as readme_file:
 
 setup(
     name='gdlevelconverter',
-    version='1.0.4',
+    version='1.0.5',
     packages=find_packages(),
     entry_points={
         'console_scripts': ['gd-level-converter=gdlevelconverter.command_line:_main']
