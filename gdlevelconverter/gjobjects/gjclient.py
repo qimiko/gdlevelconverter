@@ -15,7 +15,7 @@ class GJClient:
     Not adding account support yet, I hope you feel pranked
     """
     game_version: int
-    download_url: str = "http://www.boomlings.com/database/downloadGJLevel21.php"
+    download_url: str = "http://www.boomlings.com/database/downloadGJLevel22.php"
     upload_url: str = "http://www.boomlings.com/database/uploadGJLevel21.php"
     secret: str = "Wmfd2893gb7"
     udid: str = "S-hi-people"
