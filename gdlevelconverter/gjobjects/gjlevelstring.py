@@ -58,10 +58,15 @@ class GJLevelString:
         # step 3, filter out objects that shouldn't exist (if enabled)
         if conversion_options.maximum_id:
             # this is very inefficient...
-            report.removed_objects = [
-                x for x in self.objects if x.object_id > conversion_options.maximum_id]
-            self.objects = [
-                x for x in self.objects if x.object_id <= conversion_options.maximum_id]
+            filtered_objects = []
+            for obj in self.objects:
+                # keep only objects below maximum id
+                if obj.object_id <= conversion_options.maximum_id:
+                    filtered_objects.append(obj)
+                else:
+                    report.removed_objects.append(obj)
+
+            self.objects = filtered_objects
 
         return report
 
