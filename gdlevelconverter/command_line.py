@@ -22,7 +22,10 @@ def load_level_from_target(target: str):
         print(f"Loading level from file `{target}`")
 
         gmd_string = ""
-        with open(path, "r", encoding="utf-8") as gmd:
+
+        # sometimes gmd files can get some corruption after the level string
+        # ignoring errors may break if the corruption happens to be utf8 shaped
+        with open(path, "r", encoding="utf-8", errors="ignore") as gmd:
             gmd_string = gmd.read()
 
         if not gmd_string:
