@@ -73,7 +73,9 @@ class GJLevelString:
         if level.startswith("kS") or level.startswith("kA"):
             return cls(level)
 
-        level_zipped = base64.urlsafe_b64decode(level)
+        # convert level to ascii beforehand so errors can be ignored
+        level_ascii = level.encode("ascii", errors="ignore")
+        level_zipped = base64.urlsafe_b64decode(level_ascii)
 
         # fallback in case conversion fails
         level_unzipped = level_zipped
