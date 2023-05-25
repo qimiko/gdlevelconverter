@@ -117,7 +117,7 @@ def _main():
     """
 
     group_choices = list(GJGameObjectConversionGroupsByName) + \
-        list(GJGameObjectConversionSubGroups)
+        list(GJGameObjectConversionSubGroups) + ["none"]
 
     parser = argparse.ArgumentParser(
         description="Geometry Dash 2.0+ to 1.9 Level Converter",
@@ -126,7 +126,9 @@ def _main():
 
     parser.add_argument("target", help="path to .gmd file or level id")
     parser.add_argument(
-        "-g", "--groups", help="groups for use in id conversion. selects base subgroup by default",
+        "-g", "--groups",
+        help="groups for use in id conversion. selects base subgroup by default. \
+use none to disable id conversion",
         nargs="*", choices=group_choices, default=["base"]
     )
     parser.add_argument("-o", "--output",
@@ -144,6 +146,12 @@ def _main():
     groups = []
 
     for group in args.groups:
+        if group == "none":
+            if len(args.groups) > 1:
+                print("Selecting no groups conflicts with selecting groups")
+                return
+            continue
+
         if group in GJGameObjectConversionSubGroups:
             groups.extend(GJGameObjectConversionSubGroups[group])
             continue
