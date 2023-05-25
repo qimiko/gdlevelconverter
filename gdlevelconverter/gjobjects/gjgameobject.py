@@ -20,6 +20,8 @@ class GJGameObject(gjdictionary.GJDictionary):
     _definitions = [
         gjdictionary.ObjectDefinition(
             key="object_id", index="1", deserialize_as=int),
+        gjdictionary.ObjectDefinition(key="x_position", index="2", deserialize_as=float),
+        gjdictionary.ObjectDefinition(key="y_position", index="3", deserialize_as=float),
         gjdictionary.ObjectDefinition(
             key="legacy_object_color", index="19"),
         gjdictionary.ObjectDefinition(
@@ -33,6 +35,9 @@ class GJGameObject(gjdictionary.GJDictionary):
     _splitter = ","
 
     object_id: int
+
+    x_position: float
+    y_position: float
 
     legacy_object_color: Optional[GJCustomColorType]
     line_color: Optional[int]

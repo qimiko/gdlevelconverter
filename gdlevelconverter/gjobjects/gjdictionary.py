@@ -91,6 +91,13 @@ def from_list(splitter: str):
     return into_str
 
 
+def _float_to_rob(value: float):
+    """
+    Encodes a float into the format typically used in save data
+    """
+    return f"{value:g}"
+
+
 class GJDictionary:
     """
     Base class type for objects that fit the GJDictionary model
@@ -168,6 +175,11 @@ class GJDictionary:
 
         if key_info.serialize_as:
             return (key_info.index, key_info.serialize_as(value))
+
+        # define a custom override format for floats
+        if isinstance(value, float):
+            return (key_info.index, _float_to_rob(value))
+
         return (key_info.index, value)
 
     def _get_attributes(self):
