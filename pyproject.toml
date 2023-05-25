@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gdlevelconverter"
+version = "1.0.5"
+description = "2.0+ to 1.9 Geometry Dash level conversion tool"
+readme = "README.md"
+license = {text = "MIT License"}
+authors = [{name = "qimiko"}]
+keywords = ["geometry dash"]
+requires-python = ">=3.9"
+classifiers = [
+	"License :: OSI Approved :: MIT License",
+	"Programming Language :: Python :: 3",
+]
+
+[project.scripts]
+gd-level-converter = "gdlevelconverter.command_line:_main"
