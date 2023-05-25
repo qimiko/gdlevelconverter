@@ -4,6 +4,7 @@ Main CLI script for the Geometry Dash level conversion tool
 
 import argparse
 import collections
+from importlib.metadata import version
 from pathlib import Path
 
 from .gjobjects import GJClient, GJGameLevel
@@ -71,15 +72,14 @@ def parse_group_conversion(conversion_report: ConversionReport):
         show_hitbox_warning = [
             x.name for x in used_groups if x.show_hitbox_warning]
         if show_hitbox_warning:
-            output += f"Group(s) `{', '.join(show_hitbox_warning)}` may impact level hitboxes, \
-potentially making the level impossible.\n"
+            output += f"Group(s) `{', '.join(show_hitbox_warning)}` may impact level hitboxes. \
+This can make the level impossible.\n"
 
         show_visual_warning = [
             x.name for x in used_groups if x.show_visual_warning]
         if show_visual_warning:
             output += f"Group(s) `{', '.join(show_visual_warning)}` \
-may heavily impact level visuals, \
-potentially worsening the playing experience.\n"
+may impact level visuals.\n"
 
     return output
 
@@ -133,6 +133,7 @@ use none to disable id conversion",
     )
     parser.add_argument("-o", "--output",
                         help=".gmd file name to output to. use - to upload to servers")
+    parser.add_argument('-v', '--version', action='version', version=version('gdlevelconverter'))
 
     args = parser.parse_args()
 
