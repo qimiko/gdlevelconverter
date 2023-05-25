@@ -45,7 +45,7 @@ def load_level_from_target(target: str):
     return level
 
 
-def parse_group_conversion(conversion_report: ConversionReport):
+def parse_group_conversion(conversion_report: ConversionReport, verbose: bool = False):
     """
     Returns string output for group conversion report
     """
@@ -57,13 +57,19 @@ def parse_group_conversion(conversion_report: ConversionReport):
     if used_groups:
         output += "Object id conversions by group:\n"
         total_count = 0
-        group_conversion_counts = {k.name: len(v) for (k, v)
+        group_conversion_counts = {k: len(v) for (k, v)
                                    in conversion_report.group_conversions.items() if v}
 
-        for (group_name, count) in group_conversion_counts.items():
+        for (group, count) in group_conversion_counts.items():
             converted_percentage = count * 100 / conversion_report.preconversion_object_count
-            output += f"{group_name} - {count}x ({converted_percentage:.2f}%)\n"
+            output += f"{group.name} - {count}x ({converted_percentage:.2f}%)\n"
             total_count += count
+
+            if verbose:
+                for obj in conversion_report.group_conversions[group]:
+                    output += f"object {obj.object_id} at \
+(x: {obj.x_position:g}, y: {obj.y_position:g})\n"
+                output += "\n"
 
         converted_percentage = total_count * \
             100 / conversion_report.preconversion_object_count
@@ -84,7 +90,7 @@ may impact level visuals.\n"
     return output
 
 
-def parse_removed_report(conversion_report: ConversionReport):
+def parse_removed_report(conversion_report: ConversionReport, verbose: bool = False):
     """
     Parses removed object report to string
     """
@@ -94,12 +100,19 @@ def parse_removed_report(conversion_report: ConversionReport):
     if conversion_report.removed_objects:
         output += "Illegal objects:\n"
 
-        removed_ids = [x.object_id for x in conversion_report.removed_objects]
-        removed_freq = collections.Counter(removed_ids)
+        if verbose:
+            for obj in conversion_report.removed_objects:
+                output += f"object {obj.object_id} at \
+(x: {obj.x_position:g}, y: {obj.y_position:g})\n"
+            output += "\n"
+        else:
+            # simplify output to be based on frequency of object ids
+            removed_ids = [x.object_id for x in conversion_report.removed_objects]
+            removed_freq = collections.Counter(removed_ids)
 
-        for (removed_id, count) in removed_freq.items():
-            removed_percentage = count * 100 / conversion_report.preconversion_object_count
-            output += f"object {removed_id} - {count}x ({removed_percentage:.2f}%)\n"
+            for (removed_id, count) in removed_freq.items():
+                removed_percentage = count * 100 / conversion_report.preconversion_object_count
+                output += f"object {removed_id} - {count}x ({removed_percentage:.2f}%)\n"
 
         removed_count = len(conversion_report.removed_objects)
         removed_percentage = removed_count * \
@@ -107,6 +120,23 @@ def parse_removed_report(conversion_report: ConversionReport):
         output += f"total - {removed_count} objects removed ({removed_percentage:.2f}%)\n"
     else:
         output += "No objects removed.\n"
+
+    return output
+
+
+def parse_reports(conversion_report: ConversionReport, verbose: bool = False):
+    """
+    Parses all reports into one string
+    """
+
+    output = ""
+
+    group_report = parse_group_conversion(conversion_report, verbose)
+    if group_report:
+        output += group_report + "\n"
+
+    removed_report = parse_removed_report(conversion_report, verbose)
+    output += removed_report
 
     return output
 
@@ -133,6 +163,8 @@ use none to disable id conversion",
     )
     parser.add_argument("-o", "--output",
                         help=".gmd file name to output to. use - to upload to servers")
+    parser.add_argument(
+        '--verbose', help="enables extra logging", action="store_true")
     parser.add_argument('-v', '--version', action='version', version=version('gdlevelconverter'))
 
     args = parser.parse_args()
@@ -173,12 +205,8 @@ use none to disable id conversion",
     )
     level.binary_version = 24
 
-    group_report = parse_group_conversion(conversion_report)
-    if group_report:
-        print(group_report)
-
-    removed_report = parse_removed_report(conversion_report)
-    print(removed_report)
+    reports = parse_reports(conversion_report, args.verbose)
+    print(reports)
 
     if args.output == "-":
         print("Uploading level to 1.9 servers")
