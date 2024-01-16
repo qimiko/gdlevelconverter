@@ -2,7 +2,10 @@
 Clubstep block group for id conversion
 """
 
-from .gjgameobjectconversiongroup import GJGameObjectConversion, GJGameObjectConversionGroup
+from .gjgameobjectconversiongroup import (
+    GJGameObjectConversion,
+    GJGameObjectConversionGroup,
+)
 
 
 GroupClubstep = GJGameObjectConversionGroup(
@@ -16,5 +19,5 @@ GroupClubstep = GJGameObjectConversionGroup(
         GJGameObjectConversion(1146, 168),
         GJGameObjectConversion(1147, 169),
     ],
-    show_hitbox_warning=True
+    show_hitbox_warning=True,
 )

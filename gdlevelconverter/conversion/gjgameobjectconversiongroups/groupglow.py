@@ -2,7 +2,10 @@
 Full glow block group for id conversion
 """
 
-from .gjgameobjectconversiongroup import GJGameObjectConversion, GJGameObjectConversionGroup
+from .gjgameobjectconversiongroup import (
+    GJGameObjectConversion,
+    GJGameObjectConversionGroup,
+)
 
 
 GroupGlow = GJGameObjectConversionGroup(
@@ -12,5 +15,5 @@ GroupGlow = GJGameObjectConversionGroup(
         GJGameObjectConversion(1012, 504),
         GJGameObjectConversion(1013, 505),
     ],
-    show_visual_warning=True
+    show_visual_warning=True,
 )

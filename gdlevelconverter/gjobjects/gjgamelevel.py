@@ -23,19 +23,18 @@ class GJGameLevel(gjdictionary.GJDictionary):
         gjdictionary.ObjectDefinition(key="name", index="2"),
         gjdictionary.ObjectDefinition(key="description", index="3"),
         gjdictionary.ObjectDefinition(
-            key="level_string", index="4", deserialize_as=GJLevelString.from_encoded),
+            key="level_string", index="4", deserialize_as=GJLevelString.from_encoded
+        ),
+        gjdictionary.ObjectDefinition(key="version", index="5", deserialize_as=int),
         gjdictionary.ObjectDefinition(
-            key="version", index="5", deserialize_as=int),
+            key="audio_track", index="12", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(key="length", index="15", deserialize_as=int),
+        gjdictionary.ObjectDefinition(key="auto", index="25", deserialize_as=int),
+        gjdictionary.ObjectDefinition(key="two_player", index="31", deserialize_as=int),
         gjdictionary.ObjectDefinition(
-            key="audio_track", index="12", deserialize_as=int),
-        gjdictionary.ObjectDefinition(
-            key="length", index="15", deserialize_as=int),
-        gjdictionary.ObjectDefinition(
-            key="auto", index="25", deserialize_as=int),
-        gjdictionary.ObjectDefinition(
-            key="two_player", index="31", deserialize_as=int),
-        gjdictionary.ObjectDefinition(
-            key="custom_song_track", index="35", deserialize_as=int),
+            key="custom_song_track", index="35", deserialize_as=int
+        ),
         gjdictionary.ObjectDefinition(key="capacity_string", index="36"),
     ]
 
@@ -101,8 +100,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
         https://github.com/HJfod/GDShare-mod/blob/38f00df3d1af115fb2ddca30b02d6acd12f89661/src/utils/gdshare.cpp#L150
         """
 
-        description = base64.urlsafe_b64encode(
-            self.description.encode()).decode()
+        description = base64.urlsafe_b64encode(self.description.encode()).decode()
         level_string = self.level_string.to_encoded()
 
         song_string = f"<k>k8</k><i>{self.audio_track}</i>"
@@ -141,8 +139,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
         if client.game_version < 20:
             # now we bother with unpacking description
             description = base64.urlsafe_b64decode(self.description).decode()
-            description = re.sub(
-                r"[^A-Za-z0-9\., \$\-\_\.\+\!\*()]", "", description)
+            description = re.sub(r"[^A-Za-z0-9\., \$\-\_\.\+\!\*()]", "", description)
 
         data = {
             "binaryVersion": self.binary_version,
@@ -162,7 +159,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
             "extraString": self.capacity_string,
             "auto": self.auto,
             "twoPlayer": self.two_player,
-            "levelString": self.level_string.to_encoded()
+            "levelString": self.level_string.to_encoded(),
             # seed, seed2, wt, wt2, gdw, levelInfo would be required here for 2.1 upload
             # ldm, coins, requestedStars are not useful for 1.9 as well
         }

@@ -9,6 +9,7 @@ class GJCustomColorType(IntEnum):
     """
     Enum used to define custom colors in legacy objects
     """
+
     COLOR_UNKNOWN = 0
     COLOR_PLAYER1 = 1
     COLOR_PLAYER2 = 2

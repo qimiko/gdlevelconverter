@@ -14,6 +14,7 @@ class GJClient:
     GJClient class for requests to Geometry Dash servers
     Not adding account support yet, I hope you feel pranked
     """
+
     game_version: int
     binary_version: Optional[int] = None
     download_url: str = "https://www.boomlings.com/database/downloadGJLevel22.php"
@@ -39,9 +40,11 @@ class GJClient:
 
         # remove user agent field
         opener = urllib.request.build_opener()
-        opener.addheaders = [(header, value)
-                             for header, value in opener.addheaders
-                             if header.casefold() != 'user-agent']
+        opener.addheaders = [
+            (header, value)
+            for header, value in opener.addheaders
+            if header.casefold() != "user-agent"
+        ]
 
         with opener.open(req) as res:
             ret = res.read()

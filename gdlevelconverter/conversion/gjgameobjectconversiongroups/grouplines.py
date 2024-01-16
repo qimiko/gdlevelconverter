@@ -2,7 +2,10 @@
 3D Line block group for id conversion
 """
 
-from .gjgameobjectconversiongroup import GJGameObjectConversion, GJGameObjectConversionGroup
+from .gjgameobjectconversiongroup import (
+    GJGameObjectConversion,
+    GJGameObjectConversionGroup,
+)
 
 
 GroupLines = GJGameObjectConversionGroup(

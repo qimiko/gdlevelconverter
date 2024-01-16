@@ -7,10 +7,11 @@ from typing import List
 
 
 @dataclass(frozen=True)
-class TriggerObjectColorConversion():
+class TriggerObjectColorConversion:
     """
     Defines a conversion between color channel and trigger id
     """
+
     color_channel: int
     result_id: int
 

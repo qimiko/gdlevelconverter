@@ -13,29 +13,41 @@ class GJLevelSettingsObject(gjdictionary.GJDictionary):
     """
     Deserialized representation of Geometry Dash LevelSettingsObject
     """
+
     _definitions = [
         gjdictionary.ObjectDefinition(
-            key="color_bg", index="kS29", deserialize_as=GJColorObject),
+            key="color_bg", index="kS29", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_ground", index="kS30", deserialize_as=GJColorObject),
+            key="color_ground", index="kS30", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_line", index="kS31", deserialize_as=GJColorObject),
+            key="color_line", index="kS31", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_object", index="kS32", deserialize_as=GJColorObject),
+            key="color_object", index="kS32", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_1", index="kS33", deserialize_as=GJColorObject),
+            key="color_1", index="kS33", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_2", index="kS34", deserialize_as=GJColorObject),
+            key="color_2", index="kS34", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_3", index="kS35", deserialize_as=GJColorObject),
+            key="color_3", index="kS35", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_4", index="kS36", deserialize_as=GJColorObject),
+            key="color_4", index="kS36", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_3dl", index="kS37", deserialize_as=GJColorObject),
+            key="color_3dl", index="kS37", deserialize_as=GJColorObject
+        ),
         gjdictionary.ObjectDefinition(
-            key="color_list", index="kS38",
+            key="color_list",
+            index="kS38",
             deserialize_as=gjdictionary.as_list(GJColorObject, "|"),
-            serialize_as=gjdictionary.from_list("|")),
+            serialize_as=gjdictionary.from_list("|"),
+        ),
     ]
 
     _splitter = ","
@@ -65,8 +77,9 @@ class GJLevelSettingsObject(gjdictionary.GJDictionary):
 
         for conversion in LevelSettingsColorConversions:
             if conversion.color_index in channel_dict:
-                setattr(self, conversion.header_key,
-                        channel_dict[conversion.color_index])
+                setattr(
+                    self, conversion.header_key, channel_dict[conversion.color_index]
+                )
 
         # clear new color list
         del self.color_list

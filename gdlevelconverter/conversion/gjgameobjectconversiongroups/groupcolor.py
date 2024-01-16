@@ -2,7 +2,10 @@
 Default color block group for id conversion
 """
 
-from .gjgameobjectconversiongroup import GJGameObjectConversion, GJGameObjectConversionGroup
+from .gjgameobjectconversiongroup import (
+    GJGameObjectConversion,
+    GJGameObjectConversionGroup,
+)
 
 
 GroupColor = GJGameObjectConversionGroup(
@@ -16,5 +19,5 @@ GroupColor = GJGameObjectConversionGroup(
         GJGameObjectConversion(1827, 253),
         GJGameObjectConversion(1828, 254),
     ],
-    show_hitbox_warning=True
+    show_hitbox_warning=True,
 )

@@ -158,12 +158,7 @@ class TestGJLevelString(unittest.TestCase):
         slope_group = GJGameObjectConversionGroupsByName["slopes"]
 
         report = level.to_legacy_format(
-            ConversionOptions(
-                groups=[
-                    slope_group
-                ],
-                maximum_id=744
-            )
+            ConversionOptions(groups=[slope_group], maximum_id=744)
         )
 
         self.assertEqual(len(report.converted_triggers), 10)

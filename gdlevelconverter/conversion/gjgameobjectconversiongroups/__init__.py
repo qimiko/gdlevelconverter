@@ -29,11 +29,10 @@ GJGameObjectConversionGroups = [
     GroupPillars,
     GroupGroundSpikes,
     GroupLines,
-    GroupCircle
+    GroupCircle,
 ]
 
-GJGameObjectConversionGroupsByName = {
-    x.name: x for x in GJGameObjectConversionGroups}
+GJGameObjectConversionGroupsByName = {x.name: x for x in GJGameObjectConversionGroups}
 
 GJGameObjectConversionSubGroups = {
     "base": [
@@ -45,7 +44,7 @@ GJGameObjectConversionSubGroups = {
         GroupGlow,
         GroupSlabs,
         GroupPillars,
-        GroupLines
+        GroupLines,
     ],
-    "all": GJGameObjectConversionGroups
+    "all": GJGameObjectConversionGroups,
 }

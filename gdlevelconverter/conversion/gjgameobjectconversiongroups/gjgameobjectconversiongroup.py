@@ -11,6 +11,7 @@ class GJGameObjectConversion:
     """
     Defines an object id conversion
     """
+
     initial_id: int
     resulting_id: int
 
@@ -20,6 +21,7 @@ class GJGameObjectConversionGroup:
     """
     Defines a conversion group
     """
+
     name: str
     conversions: List[GJGameObjectConversion]
     show_hitbox_warning: bool = False

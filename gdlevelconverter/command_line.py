@@ -9,7 +9,10 @@ from pathlib import Path
 
 from .gjobjects import GJClient, GJGameLevel
 from .conversion import ConversionReport, ConversionOptions
-from .conversion import GJGameObjectConversionGroupsByName, GJGameObjectConversionSubGroups
+from .conversion import (
+    GJGameObjectConversionGroupsByName,
+    GJGameObjectConversionSubGroups,
+)
 
 
 def load_level_from_target(target: str):
@@ -51,17 +54,19 @@ def parse_group_conversion(conversion_report: ConversionReport, verbose: bool = 
     """
     output = ""
 
-    used_groups = [
-        k for (k, v) in conversion_report.group_conversions.items() if v]
+    used_groups = [k for (k, v) in conversion_report.group_conversions.items() if v]
 
     if used_groups:
         output += "Object id conversions by group:\n"
         total_count = 0
-        group_conversion_counts = {k: len(v) for (k, v)
-                                   in conversion_report.group_conversions.items() if v}
+        group_conversion_counts = {
+            k: len(v) for (k, v) in conversion_report.group_conversions.items() if v
+        }
 
-        for (group, count) in group_conversion_counts.items():
-            converted_percentage = count * 100 / conversion_report.preconversion_object_count
+        for group, count in group_conversion_counts.items():
+            converted_percentage = (
+                count * 100 / conversion_report.preconversion_object_count
+            )
             output += f"{group.name} - {count}x ({converted_percentage:.2f}%)\n"
             total_count += count
 
@@ -71,18 +76,17 @@ def parse_group_conversion(conversion_report: ConversionReport, verbose: bool = 
 (x: {obj.x_position:g}, y: {obj.y_position:g})\n"
                 output += "\n"
 
-        converted_percentage = total_count * \
-            100 / conversion_report.preconversion_object_count
+        converted_percentage = (
+            total_count * 100 / conversion_report.preconversion_object_count
+        )
         output += f"total - {total_count}x ({converted_percentage:.2f}%)\n"
 
-        show_hitbox_warning = [
-            x.name for x in used_groups if x.show_hitbox_warning]
+        show_hitbox_warning = [x.name for x in used_groups if x.show_hitbox_warning]
         if show_hitbox_warning:
             output += f"Group(s) `{', '.join(show_hitbox_warning)}` may impact level hitboxes. \
 This can make the level impossible.\n"
 
-        show_visual_warning = [
-            x.name for x in used_groups if x.show_visual_warning]
+        show_visual_warning = [x.name for x in used_groups if x.show_visual_warning]
         if show_visual_warning:
             output += f"Group(s) `{', '.join(show_visual_warning)}` \
 may impact level visuals.\n"
@@ -110,14 +114,21 @@ def parse_removed_report(conversion_report: ConversionReport, verbose: bool = Fa
             removed_ids = [x.object_id for x in conversion_report.removed_objects]
             removed_freq = collections.Counter(removed_ids)
 
-            for (removed_id, count) in removed_freq.items():
-                removed_percentage = count * 100 / conversion_report.preconversion_object_count
-                output += f"object {removed_id} - {count}x ({removed_percentage:.2f}%)\n"
+            for removed_id, count in removed_freq.items():
+                removed_percentage = (
+                    count * 100 / conversion_report.preconversion_object_count
+                )
+                output += (
+                    f"object {removed_id} - {count}x ({removed_percentage:.2f}%)\n"
+                )
 
         removed_count = len(conversion_report.removed_objects)
-        removed_percentage = removed_count * \
-            100 / conversion_report.preconversion_object_count
-        output += f"total - {removed_count} objects removed ({removed_percentage:.2f}%)\n"
+        removed_percentage = (
+            removed_count * 100 / conversion_report.preconversion_object_count
+        )
+        output += (
+            f"total - {removed_count} objects removed ({removed_percentage:.2f}%)\n"
+        )
     else:
         output += "No objects removed.\n"
 
@@ -146,8 +157,11 @@ def _main():
     Main function for script
     """
 
-    group_choices = list(GJGameObjectConversionGroupsByName) + \
-        list(GJGameObjectConversionSubGroups) + ["none"]
+    group_choices = (
+        list(GJGameObjectConversionGroupsByName)
+        + list(GJGameObjectConversionSubGroups)
+        + ["none"]
+    )
 
     parser = argparse.ArgumentParser(
         description="Geometry Dash 2.0+ to 1.9 Level Converter",
@@ -156,16 +170,21 @@ def _main():
 
     parser.add_argument("target", help="path to .gmd file or level id")
     parser.add_argument(
-        "-g", "--groups",
+        "-g",
+        "--groups",
         help="groups for use in id conversion. selects base subgroup by default. \
 use none to disable id conversion",
-        nargs="*", choices=group_choices, default=["base"]
+        nargs="*",
+        choices=group_choices,
+        default=["base"],
     )
-    parser.add_argument("-o", "--output",
-                        help=".gmd file name to output to. use - to upload to servers")
     parser.add_argument(
-        '--verbose', help="enables extra logging", action="store_true")
-    parser.add_argument('-v', '--version', action='version', version=version('gdlevelconverter'))
+        "-o", "--output", help=".gmd file name to output to. use - to upload to servers"
+    )
+    parser.add_argument("--verbose", help="enables extra logging", action="store_true")
+    parser.add_argument(
+        "-v", "--version", action="version", version=version("gdlevelconverter")
+    )
 
     args = parser.parse_args()
 
@@ -192,16 +211,12 @@ use none to disable id conversion",
         if group in GJGameObjectConversionGroupsByName:
             groups.append(GJGameObjectConversionGroupsByName[group])
         else:
-            print(
-                f"Invalid group, possible groups are {group_choices}")
+            print(f"Invalid group, possible groups are {group_choices}")
             return
 
     # as of right now the target version is hardcoded
     conversion_report = level.level_string.to_legacy_format(
-        ConversionOptions(
-            groups=groups,
-            maximum_id=744
-        )
+        ConversionOptions(groups=groups, maximum_id=744)
     )
     level.binary_version = 24
 
@@ -212,8 +227,9 @@ use none to disable id conversion",
         print("Uploading level to 1.9 servers")
 
         client = GJClient(
-            game_version=19, binary_version=24,
-            upload_url="https://absolllute.com/gdps/gdapi/uploadGJLevel19.php"
+            game_version=19,
+            binary_version=24,
+            upload_url="https://absolllute.com/gdps/gdapi/uploadGJLevel19.php",
         )
 
         resp_id = level.upload(client)

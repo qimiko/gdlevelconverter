@@ -12,14 +12,16 @@ class GJTestObject(gjdictionary.GJDictionary):
     """
     Deserialized representation of Geometry Dash object
     """
+
     _definitions = [
-        gjdictionary.ObjectDefinition(
-            key="object_id", index="1", deserialize_as=int),
+        gjdictionary.ObjectDefinition(key="object_id", index="1", deserialize_as=int),
         gjdictionary.ObjectDefinition(key="title", index="2"),
         gjdictionary.ObjectDefinition(
-            key="names", index="3",
+            key="names",
+            index="3",
             deserialize_as=gjdictionary.as_list(str, ";"),
-            serialize_as=gjdictionary.from_list(";"))
+            serialize_as=gjdictionary.from_list(";"),
+        ),
     ]
 
     _splitter = ","
@@ -83,7 +85,8 @@ class TestGJDictionary(unittest.TestCase):
         obj = GJTestObject(self.TEST_UNKNOWN_STRING)
 
         self.assertEqual(
-            getattr(obj, f"index_{self.TEST_UNKNOWN_INDEX}"), self.TEST_UNKNOWN_VALUE)
+            getattr(obj, f"index_{self.TEST_UNKNOWN_INDEX}"), self.TEST_UNKNOWN_VALUE
+        )
 
     def test_unknown_serialization(self):
         """

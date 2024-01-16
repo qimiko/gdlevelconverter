@@ -18,18 +18,21 @@ class GJGameObject(gjdictionary.GJDictionary):
     UNIFIED_COLOR_TRIGGER_ID = 899
 
     _definitions = [
+        gjdictionary.ObjectDefinition(key="object_id", index="1", deserialize_as=int),
         gjdictionary.ObjectDefinition(
-            key="object_id", index="1", deserialize_as=int),
-        gjdictionary.ObjectDefinition(key="x_position", index="2", deserialize_as=float),
-        gjdictionary.ObjectDefinition(key="y_position", index="3", deserialize_as=float),
+            key="x_position", index="2", deserialize_as=float
+        ),
         gjdictionary.ObjectDefinition(
-            key="legacy_object_color", index="19"),
+            key="y_position", index="3", deserialize_as=float
+        ),
+        gjdictionary.ObjectDefinition(key="legacy_object_color", index="19"),
+        gjdictionary.ObjectDefinition(key="line_color", index="21", deserialize_as=int),
         gjdictionary.ObjectDefinition(
-            key="line_color", index="21", deserialize_as=int),
+            key="object_color", index="22", deserialize_as=int
+        ),
         gjdictionary.ObjectDefinition(
-            key="object_color", index="22", deserialize_as=int),
-        gjdictionary.ObjectDefinition(
-            key="color_trigger_target", index="23", deserialize_as=int),
+            key="color_trigger_target", index="23", deserialize_as=int
+        ),
     ]
 
     _splitter = ","
@@ -52,7 +55,8 @@ class GJGameObject(gjdictionary.GJDictionary):
         """
         if hasattr(self, "object_color"):
             self.legacy_object_color = GJCustomColorType.from_color_channel(
-                self.object_color)
+                self.object_color
+            )
 
             del self.object_color
             if hasattr(self, "line_color"):
@@ -63,7 +67,8 @@ class GJGameObject(gjdictionary.GJDictionary):
             # object color is usually used to describe the object color
             # line color is used as a fallback
             self.legacy_object_color = GJCustomColorType.from_color_channel(
-                self.line_color)
+                self.line_color
+            )
 
             del self.line_color
             return True
@@ -71,15 +76,18 @@ class GJGameObject(gjdictionary.GJDictionary):
         return False
 
     def remap_to_legacy_id_by_groups(
-        self,
-        groups: List[GJGameObjectConversionGroup]
+        self, groups: List[GJGameObjectConversionGroup]
     ) -> Optional[GJGameObjectConversionGroup]:
         """
         Remaps the object's id based on the ids defined in groups
         Returns the group the object fit, if any
         """
-        conversions_only = {x: y for y in groups
-                            for x in y.conversions if x.initial_id == self.object_id}
+        conversions_only = {
+            x: y
+            for y in groups
+            for x in y.conversions
+            if x.initial_id == self.object_id
+        }
 
         # as of right now multiple conversions aren't supported
         # if they happen then you're probably doing the wrong thing
@@ -107,8 +115,13 @@ class GJGameObject(gjdictionary.GJDictionary):
             self.color_trigger_target = 1
 
         conversion = next(
-            (x for x in TriggerObjectColorConversions
-             if x.color_channel == self.color_trigger_target), None)
+            (
+                x
+                for x in TriggerObjectColorConversions
+                if x.color_channel == self.color_trigger_target
+            ),
+            None,
+        )
 
         if not conversion:
             return False

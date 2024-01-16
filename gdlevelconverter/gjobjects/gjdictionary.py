@@ -35,7 +35,9 @@ class ObjectDefinition:
     """
 
 
-def class_from_string(string: str, splitter: str, definitions: List[ObjectDefinition], cls: object):
+def class_from_string(
+    string: str, splitter: str, definitions: List[ObjectDefinition], cls: object
+):
     """
     parses the special robtop style array
     - expects string like 1,53,2,65,3,14.3
@@ -47,7 +49,6 @@ def class_from_string(string: str, splitter: str, definitions: List[ObjectDefini
     for index, current_value in enumerate(split_first_step):
         # if odd then we on index
         if index % 2 == 0:
-
             index_name = current_value
             value = split_first_step[index + 1]
 
@@ -73,6 +74,7 @@ def as_list(into: Callable[[str], any], splitter: str):
     Used as value in object definition
     Creates a function that converts a string into list with splitter
     """
+
     def from_str(string: str):
         return [into(x) for x in string.split(splitter) if x]
 
@@ -84,6 +86,7 @@ def from_list(splitter: str):
     Used as value in object definition
     Creates a function that converts a list into string using splitter
     """
+
     def into_str(obj: List[any]):
         # gd ends lists with splitter from what i can tell
         return splitter.join([str(x) for x in obj]) + splitter
@@ -139,7 +142,9 @@ class GJDictionary:
 
         # hacky way of parsing the xml into plist
         # in the documentation, they call this an "idiom". guess why
-        element_dict = {k.text: cls._parse_xml_value(v) for k, v in zip(*[iter(root)]*2)}
+        element_dict = {
+            k.text: cls._parse_xml_value(v) for k, v in zip(*[iter(root)] * 2)
+        }
         return element_dict
 
     @staticmethod
@@ -160,7 +165,7 @@ class GJDictionary:
 
     def __init__(self, string: str = None):
         if string:
-            class_from_string(string, self._splitter,  self._definitions, self)
+            class_from_string(string, self._splitter, self._definitions, self)
 
     def __info_for_key(self, key: str):
         return next((x for x in self._definitions if x.key == key), None)
@@ -189,7 +194,8 @@ class GJDictionary:
         attributes = self._get_attributes()
 
         mapped_attributes = [
-            self.__map_tuple_key_to_index(x) for x in attributes.items()]
+            self.__map_tuple_key_to_index(x) for x in attributes.items()
+        ]
 
         flattened_attributes = [str(x) for y in mapped_attributes for x in y]
         return self._splitter.join(flattened_attributes)

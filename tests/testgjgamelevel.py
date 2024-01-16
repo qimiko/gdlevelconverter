@@ -44,5 +44,6 @@ class TestGJGameLevel(unittest.TestCase):
 
         resulting_gmd = level.to_gmd()
 
-        self.assertTrue(resulting_gmd.startswith(
-            "<d><k>kCEK</k><i>4</i><k>k2</k><s>maki roll</s>"))
+        self.assertTrue(
+            resulting_gmd.startswith("<d><k>kCEK</k><i>4</i><k>k2</k><s>maki roll</s>")
+        )

@@ -2,7 +2,10 @@
 Slope block group for id conversion
 """
 
-from .gjgameobjectconversiongroup import GJGameObjectConversion, GJGameObjectConversionGroup
+from .gjgameobjectconversiongroup import (
+    GJGameObjectConversion,
+    GJGameObjectConversionGroup,
+)
 
 
 GroupSlopes = GJGameObjectConversionGroup(
@@ -23,5 +26,5 @@ GroupSlopes = GJGameObjectConversionGroup(
         GJGameObjectConversion(1908, 373),
         GJGameObjectConversion(1909, 374),
     ],
-    show_visual_warning=True
+    show_visual_warning=True,
 )

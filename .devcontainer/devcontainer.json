@@ -2,5 +2,18 @@
 	"name": "Python 3",
 	"image": "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm",
 
-	"postCreateCommand": "pip3 install --user -e ."
+	"postCreateCommand": "pip3 install --user -e .",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.testing.unittestEnabled": true,
+				"[python]": {
+					"editor.defaultFormatter": "charliermarsh.ruff"
+				}
+			},
+			"extensions": [
+				"charliermarsh.ruff"
+			]
+		}
+	}
 }

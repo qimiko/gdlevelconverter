@@ -2,7 +2,10 @@
 Ground spike group for id conversion
 """
 
-from .gjgameobjectconversiongroup import GJGameObjectConversion, GJGameObjectConversionGroup
+from .gjgameobjectconversiongroup import (
+    GJGameObjectConversion,
+    GJGameObjectConversionGroup,
+)
 
 
 GroupGroundSpikes = GJGameObjectConversionGroup(
@@ -14,5 +17,5 @@ GroupGroundSpikes = GJGameObjectConversionGroup(
         GJGameObjectConversion(1714, 135),
     ],
     show_hitbox_warning=True,
-    show_visual_warning=True
+    show_visual_warning=True,
 )

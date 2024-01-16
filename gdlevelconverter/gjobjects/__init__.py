@@ -9,5 +9,11 @@ from .gjlevelsettingsobject import GJLevelSettingsObject
 from .gjlevelstring import GJLevelString
 from .gjcolorobject import GJColorObject
 
-__all__ = ["GJClient", "GJGameLevel", "GJGameObject",
-           "GJLevelSettingsObject", "GJLevelString", "GJColorObject"]
+__all__ = [
+    "GJClient",
+    "GJGameLevel",
+    "GJGameObject",
+    "GJLevelSettingsObject",
+    "GJLevelString",
+    "GJColorObject",
+]

@@ -16,6 +16,7 @@ class GJLevelString:
     """
     Deserialized representation of a Geometry Dash level string
     """
+
     OBJECT_SEPARATOR: str = ";"
 
     header: GJLevelSettingsObject
@@ -41,7 +42,7 @@ class GJLevelString:
             converted_triggers=[],
             group_conversions={x: [] for x in conversion_options.groups},
             removed_objects=[],
-            preconversion_object_count=len(self.objects)
+            preconversion_object_count=len(self.objects),
         )
 
         for obj in self.objects:
@@ -51,7 +52,8 @@ class GJLevelString:
             else:
                 obj.to_legacy_color()  # as of rn i don't bother tracking this value
                 group_result = obj.remap_to_legacy_id_by_groups(
-                    conversion_options.groups)
+                    conversion_options.groups
+                )
                 if group_result:
                     report.group_conversions[group_result].append(obj)
 
@@ -93,8 +95,10 @@ class GJLevelString:
         return cls(level_unzipped.decode())
 
     def __to_object_string(self):
-        object_string = self.OBJECT_SEPARATOR.join(
-            [str(x) for x in self.objects]) + self.OBJECT_SEPARATOR
+        object_string = (
+            self.OBJECT_SEPARATOR.join([str(x) for x in self.objects])
+            + self.OBJECT_SEPARATOR
+        )
 
         return f"{self.header}{self.OBJECT_SEPARATOR}{object_string}"
 
@@ -103,7 +107,8 @@ class GJLevelString:
         Encodes the level string to save data format
         """
         return base64.urlsafe_b64encode(
-            gzip.compress(self.__to_object_string().encode())).decode()
+            gzip.compress(self.__to_object_string().encode())
+        ).decode()
 
     def __str__(self):
         return self.__to_object_string()

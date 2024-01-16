@@ -7,10 +7,11 @@ from typing import List
 
 
 @dataclass(frozen=True)
-class LevelSettingsColorConversion():
+class LevelSettingsColorConversion:
     """
     Defines a conversion between color index and key
     """
+
     color_index: int
     header_key: str
 
