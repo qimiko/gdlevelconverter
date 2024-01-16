@@ -37,7 +37,7 @@ def load_level_from_target(target: str):
         level_id = int(target)
         print(f"Downloading level {level_id}")
 
-        client = GJClient(game_version=21)
+        client = GJClient(game_version=22)
         level = GJGameLevel.from_id(client, level_id)
     else:
         raise ValueError("invalid value for target passed")
