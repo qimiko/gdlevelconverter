@@ -37,7 +37,7 @@ def load_level_from_target(target: str):
         level_id = int(target)
         print(f"Downloading level {level_id}")
 
-        client = GJClient(game_version=22)
+        client = GJClient(game_version=22, binary_version=38)
         level = GJGameLevel.from_id(client, level_id)
     else:
         raise ValueError("invalid value for target passed")
@@ -212,7 +212,9 @@ use none to disable id conversion",
         print("Uploading level to 1.9 servers")
 
         client = GJClient(
-            game_version=19, upload_url="https://absolllute.com/gdps/gdapi/uploadGJLevel19.php")
+            game_version=19, binary_version=24,
+            upload_url="https://absolllute.com/gdps/gdapi/uploadGJLevel19.php"
+        )
 
         resp_id = level.upload(client)
 

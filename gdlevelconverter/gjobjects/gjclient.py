@@ -5,7 +5,7 @@ Defines GJClient class
 from dataclasses import dataclass
 import urllib.request
 import urllib.parse
-from typing import Dict
+from typing import Dict, Optional
 
 
 @dataclass
@@ -15,6 +15,7 @@ class GJClient:
     Not adding account support yet, I hope you feel pranked
     """
     game_version: int
+    binary_version: Optional[int] = None
     download_url: str = "https://www.boomlings.com/database/downloadGJLevel22.php"
     upload_url: str = "https://www.boomlings.com/database/uploadGJLevel21.php"
     secret: str = "Wmfd2893gb7"
@@ -28,6 +29,9 @@ class GJClient:
 
         data["secret"] = self.secret
         data["gameVersion"] = self.game_version
+
+        if self.binary_version:
+            data["binaryVersion"] = self.binary_version
 
         data_string = urllib.parse.urlencode(data).encode()
 
