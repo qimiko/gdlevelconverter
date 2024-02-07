@@ -10,7 +10,7 @@ See [this document](docs/why.md) for the reason for the rewrite, as well as the 
 
 ## Installation
 
-In the root directory of this project, run `pip install .` using Python. This will add `gd-level-converter` to your PATH.
+In the root directory of this project, run `pip install .` using Python. This will add `gd-level-converter` to your PATH. You can also install directly from the GitHub releases. For example, running `pip install https://github.com/qimiko/gdlevelconverter/archive/refs/tags/v1.1.2.zip` would download and install the current latest release.
 
 ## Usage
 
