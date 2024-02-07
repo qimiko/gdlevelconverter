@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gdlevelconverter"
-version = "1.1.1"
+version = "1.1.2"
 description = "2.0+ to 1.9 Geometry Dash level conversion tool"
 readme = "README.md"
 license = {text = "MIT License"}
