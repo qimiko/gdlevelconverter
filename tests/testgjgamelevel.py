@@ -13,6 +13,7 @@ class TestGJGameLevel(unittest.TestCase):
     """
 
     TEST_GMD_FILE_NAME = "maki_roll.gmd"
+    TEST_GMDV2_FILE_NAME = "kanpyo_roll.gmd"
 
     def test_from_gmd(self):
         """
@@ -28,6 +29,22 @@ class TestGJGameLevel(unittest.TestCase):
         level = GJGameLevel.from_gmd(gmd_string)
         self.assertEqual(level.name, "maki roll")
         self.assertEqual(len(level.level_string.objects), 19999)
+
+    def test_from_gmdv2(self):
+        """
+        Test loading from the gmdv2 format.
+        This format wraps everything in an additional plist tag
+        """
+
+        file_path = pathlib.Path(__file__).parent / self.TEST_GMDV2_FILE_NAME
+
+        gmd_string = ""
+        with open(file_path, "r", encoding="utf8") as gmd:
+            gmd_string = gmd.read()
+
+        level = GJGameLevel.from_gmd(gmd_string)
+        self.assertEqual(level.name, "Kanpyo Roll")
+        self.assertEqual(len(level.level_string.objects), 19604)
 
     def test_to_gmd(self):
         """

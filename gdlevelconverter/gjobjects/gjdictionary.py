@@ -137,6 +137,13 @@ class GJDictionary:
         Parses a dictionary string (as plist) into a dictionary
         """
         root = xml.etree.ElementTree.fromstring(string)
+
+        # correct new gmd files into old gmd format
+        if root.tag == "plist":
+            root = root[0]
+            if root.tag == "dict":
+                root.tag = "d"
+
         if not root.tag == "d":
             raise ValueError("input is not in plist format")
 
