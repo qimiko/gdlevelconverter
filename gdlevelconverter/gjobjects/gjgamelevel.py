@@ -43,6 +43,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
     level_id: int
     name: str
     description: str
+    "base64 encoded description of the level"
     level_string: GJLevelString
     version: int
     audio_track: int
@@ -72,12 +73,13 @@ class GJGameLevel(gjdictionary.GJDictionary):
         instance.level_id = int(element_dict.get("k1", 0))
         instance.name = element_dict.get("k2", "Unknown")
 
-        description = element_dict.get("k3", None)
-        if description:
+        description = element_dict.get("k3", "")
+        is_old_gmd = element_dict.get("_data_version", 1) <= 1
+        if description and is_old_gmd:
             # gmd files are double decoded, for some reason
             instance.description = base64.urlsafe_b64decode(description).decode()
         else:
-            instance.description = ""
+            instance.description = description
 
         # if this doesn't exist this should error
         instance.level_string = GJLevelString.from_encoded(element_dict["k4"])

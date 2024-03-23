@@ -139,9 +139,11 @@ class GJDictionary:
         root = xml.etree.ElementTree.fromstring(string)
 
         # correct new gmd files into old gmd format
+        gmd_version = 1
         if root.tag == "plist":
             root = root[0]
             if root.tag == "dict":
+                gmd_version = 2
                 root.tag = "d"
 
         if not root.tag == "d":
@@ -152,6 +154,10 @@ class GJDictionary:
         element_dict = {
             k.text: cls._parse_xml_value(v) for k, v in zip(*[iter(root)] * 2)
         }
+
+        # ah! i don't like that this is neccessary
+        element_dict["_data_version"] = gmd_version
+
         return element_dict
 
     @staticmethod

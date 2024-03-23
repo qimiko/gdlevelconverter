@@ -5,6 +5,7 @@ Defines test cases for GJGameLevel
 import unittest
 import pathlib
 from gdlevelconverter.gjobjects import GJGameLevel
+import base64
 
 
 class TestGJGameLevel(unittest.TestCase):
@@ -30,6 +31,11 @@ class TestGJGameLevel(unittest.TestCase):
         self.assertEqual(level.name, "maki roll")
         self.assertEqual(len(level.level_string.objects), 19999)
 
+        # validate description is in proper base64
+        level_description = "she just won't stop rolling... | collab with zyl"
+        test_description = base64.b64decode(level.description).decode()
+        self.assertEqual(test_description, level_description)
+
     def test_from_gmdv2(self):
         """
         Test loading from the gmdv2 format.
@@ -45,6 +51,11 @@ class TestGJGameLevel(unittest.TestCase):
         level = GJGameLevel.from_gmd(gmd_string)
         self.assertEqual(level.name, "Kanpyo Roll")
         self.assertEqual(len(level.level_string.objects), 19604)
+
+        # gmdv2 files encode descriptions slightly differently, making the test necessary
+        level_description = "exclusive !!!              "
+        test_description = base64.b64decode(level.description).decode()
+        self.assertEqual(test_description, level_description)
 
     def test_to_gmd(self):
         """
