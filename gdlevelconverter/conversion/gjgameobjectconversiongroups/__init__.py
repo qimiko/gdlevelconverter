@@ -15,6 +15,7 @@ from .groupdecoration import GroupDecoration
 from .grouptriggers import GroupTriggers
 from .groupslopes import GroupSlopes
 from .groupcircle import GroupCircle
+from .grouppulsing import GroupPulsing
 
 GJGameObjectConversionGroups = [
     GroupSlopes,
@@ -30,6 +31,7 @@ GJGameObjectConversionGroups = [
     GroupGroundSpikes,
     GroupLines,
     GroupCircle,
+    GroupPulsing
 ]
 
 GJGameObjectConversionGroupsByName = {x.name: x for x in GJGameObjectConversionGroups}
