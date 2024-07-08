@@ -174,6 +174,10 @@ class GJDictionary:
         if val.tag == "r":
             return float(val.text)
 
+        # if empty, val.text may return none. it's forced to an empty string instead
+        if val.tag == "s" and not val.text:
+            return ""
+
         return val.text
 
     def __init__(self, string: str = None):
