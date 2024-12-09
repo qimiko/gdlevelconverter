@@ -19,6 +19,7 @@ class GJCustomColorType(IntEnum):
     COLOR_3 = 6
     COLOR_4 = 7
     COLOR_3DL = 8
+    COLOR_WHITE = 9
 
     @classmethod
     def from_color_channel(cls, channel: int):
@@ -34,6 +35,7 @@ class GJCustomColorType(IntEnum):
             1005: cls.COLOR_PLAYER1,
             1006: cls.COLOR_PLAYER2,
             1007: cls.COLOR_LBG,
+            1011: cls.COLOR_WHITE,
         }
 
         if channel in mapping:
