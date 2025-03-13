@@ -1,0 +1,29 @@
+name: Build Wheel
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Install build
+      run: |
+        python3 -m pip install build
+    - name: Build wheel
+      run: |
+        python3 -m build --wheel
+    - uses: actions/upload-artifact@v4
+      with:
+        name: gdlevelconverter-wheel
+        path: dist/gdlevelconverter-*.whl
