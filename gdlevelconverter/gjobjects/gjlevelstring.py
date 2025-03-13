@@ -50,7 +50,8 @@ class GJLevelString:
                 if obj.remap_to_legacy_id_by_target():
                     report.converted_triggers.append(obj)
             else:
-                obj.to_legacy_color()  # as of rn i don't bother tracking this value
+                # as of rn i don't bother tracking this value
+                obj.to_legacy_color(conversion_options.conv_white)
                 group_result = obj.remap_to_legacy_id_by_groups(
                     conversion_options.groups
                 )

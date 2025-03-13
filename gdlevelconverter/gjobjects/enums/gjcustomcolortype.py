@@ -19,12 +19,14 @@ class GJCustomColorType(IntEnum):
     COLOR_3 = 6
     COLOR_4 = 7
     COLOR_3DL = 8
+    COLOR_NONE = 9
 
     @classmethod
-    def from_color_channel(cls, channel: int):
+    def from_color_channel(cls, channel: int, conv_white: bool = False):
         """
         Returns enum associated with a color channel
         """
+
         mapping = {
             1: cls.COLOR_1,
             2: cls.COLOR_2,
@@ -39,7 +41,10 @@ class GJCustomColorType(IntEnum):
         if channel in mapping:
             return mapping[channel]
 
-        return cls.COLOR_UNKNOWN
+        if conv_white:
+            return cls.COLOR_NONE
+        else:
+            return cls.COLOR_UNKNOWN
 
     def __str__(self):
         return str(self.value)

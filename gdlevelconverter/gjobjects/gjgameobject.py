@@ -48,14 +48,14 @@ class GJGameObject(gjdictionary.GJDictionary):
 
     color_trigger_target: Optional[int]
 
-    def to_legacy_color(self) -> bool:
+    def to_legacy_color(self, conv_white: bool = False) -> bool:
         """
         Converts an object to use the legacy 1.9 color format, if applicable
         Returns True if conversion was performed
         """
         if hasattr(self, "object_color"):
             self.legacy_object_color = GJCustomColorType.from_color_channel(
-                self.object_color
+                self.object_color, conv_white
             )
 
             del self.object_color
@@ -67,7 +67,7 @@ class GJGameObject(gjdictionary.GJDictionary):
             # object color is usually used to describe the object color
             # line color is used as a fallback
             self.legacy_object_color = GJCustomColorType.from_color_channel(
-                self.line_color
+                self.line_color, conv_white
             )
 
             del self.line_color

@@ -183,6 +183,13 @@ use none to disable id conversion",
     parser.add_argument(
         "-o", "--output", help=".gmd file name to output to. use - to upload to servers"
     )
+    parser.add_argument(
+        "--convert-unknown-colors",
+        help="if objects using an invalid color channel should be converted to an uncolored color id. \
+this also includes the white color channel",
+        action="store_true",
+    )
+
     parser.add_argument("--verbose", help="enables extra logging", action="store_true")
     parser.add_argument(
         "-v", "--version", action="version", version=version("gdlevelconverter")
@@ -218,7 +225,9 @@ use none to disable id conversion",
 
     # as of right now the target version is hardcoded
     conversion_report = level.level_string.to_legacy_format(
-        ConversionOptions(groups=groups, maximum_id=744)
+        ConversionOptions(
+            groups=groups, maximum_id=744, conv_white=args.convert_unknown_colors
+        )
     )
     level.binary_version = 24
 

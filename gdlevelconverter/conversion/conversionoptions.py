@@ -17,4 +17,5 @@ class ConversionOptions:
     """
 
     groups: List[GJGameObjectConversionGroup]
+    conv_white: bool = False
     maximum_id: Optional[int] = None
