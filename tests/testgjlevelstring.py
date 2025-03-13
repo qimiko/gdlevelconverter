@@ -1,6 +1,7 @@
 """
 Defines test cases for GJLevelString
 """
+
 import unittest
 import pathlib
 from gdlevelconverter.gjobjects import GJLevelString

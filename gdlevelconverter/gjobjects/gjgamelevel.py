@@ -77,7 +77,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
         is_old_gmd = element_dict.get("_data_version", 1) <= 1
         if description and is_old_gmd:
             # gmd files are double decoded, for some reason
-            null_removed, = description.split("\x00")
+            (null_removed,) = description.split("\x00")
             instance.description = base64.urlsafe_b64decode(null_removed).decode()
         else:
             instance.description = description.split("\x00")[0]

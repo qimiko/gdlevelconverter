@@ -83,8 +83,10 @@ def parse_group_conversion(conversion_report: ConversionReport, verbose: bool = 
 
         show_hitbox_warning = [x.name for x in used_groups if x.show_hitbox_warning]
         if show_hitbox_warning:
-            output += f"Group(s) `{', '.join(show_hitbox_warning)}` may impact level hitboxes. \
+            output += (
+                f"Group(s) `{', '.join(show_hitbox_warning)}` may impact level hitboxes. \
 This can make the level impossible.\n"
+            )
 
         show_visual_warning = [x.name for x in used_groups if x.show_visual_warning]
         if show_visual_warning:

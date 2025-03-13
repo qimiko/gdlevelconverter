@@ -31,7 +31,7 @@ GJGameObjectConversionGroups = [
     GroupGroundSpikes,
     GroupLines,
     GroupCircle,
-    GroupPulsing
+    GroupPulsing,
 ]
 
 GJGameObjectConversionGroupsByName = {x.name: x for x in GJGameObjectConversionGroups}

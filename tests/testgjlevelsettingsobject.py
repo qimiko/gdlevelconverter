@@ -2,7 +2,6 @@
 Defines GJLevelSettingsObject test cases
 """
 
-
 import unittest
 
 from gdlevelconverter.gjobjects import GJLevelSettingsObject
