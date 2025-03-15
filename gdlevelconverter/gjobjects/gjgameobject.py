@@ -25,7 +25,44 @@ class GJGameObject(gjdictionary.GJDictionary):
         gjdictionary.ObjectDefinition(
             key="y_position", index="3", deserialize_as=float
         ),
+        gjdictionary.ObjectDefinition(key="flip_x", index="4", deserialize_as=int),
+        gjdictionary.ObjectDefinition(key="flip_y", index="5", deserialize_as=int),
+        gjdictionary.ObjectDefinition(key="rotation", index="6", deserialize_as=int),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_red", index="7", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_green", index="8", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_blue", index="9", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_duration", index="10", deserialize_as=float
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_touch", index="11", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(key="coin_id", index="12", deserialize_as=int),
+        gjdictionary.ObjectDefinition(
+            key="preview_enabled", index="13", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_tint_ground", index="14", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_copy_pcol1", index="15", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_copy_pcol2", index="16", deserialize_as=int
+        ),
+        gjdictionary.ObjectDefinition(
+            key="color_trigger_blend", index="17", deserialize_as=int
+        ),
         gjdictionary.ObjectDefinition(key="legacy_object_color", index="19"),
+        gjdictionary.ObjectDefinition(
+            key="editor_group", index="20", deserialize_as=int
+        ),
         gjdictionary.ObjectDefinition(key="line_color", index="21", deserialize_as=int),
         gjdictionary.ObjectDefinition(
             key="object_color", index="22", deserialize_as=int
@@ -42,7 +79,22 @@ class GJGameObject(gjdictionary.GJDictionary):
     x_position: float
     y_position: float
 
+    flip_x: Optional[int]
+    flip_y: Optional[int]
+    rotation: Optional[int]
+    color_trigger_red: Optional[int]
+    color_trigger_green: Optional[int]
+    color_trigger_blue: Optional[int]
+    color_trigger_duration: Optional[float]
+    color_trigger_touch: Optional[int]
+    coin_id: Optional[int]
+    preview_enabled: Optional[int]
+    color_trigger_tint_ground: Optional[int]
+    color_trigger_copy_pcol1: Optional[int]
+    color_trigger_copy_pcol2: Optional[int]
+    color_trigger_blend: Optional[int]
     legacy_object_color: Optional[GJCustomColorType]
+    editor_group: Optional[int]
     line_color: Optional[int]
     object_color: Optional[int]
 
