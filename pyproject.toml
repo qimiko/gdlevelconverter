@@ -7,12 +7,11 @@ name = "gdlevelconverter"
 version = "1.2.0"
 description = "2.0+ to 1.9 Geometry Dash level conversion tool"
 readme = "README.md"
-license = {text = "MIT License"}
+license = "MIT"
 authors = [{name = "qimiko"}]
 keywords = ["geometry dash"]
 requires-python = ">=3.9"
 classifiers = [
-	"License :: OSI Approved :: MIT License",
 	"Programming Language :: Python :: 3",
 ]
 
