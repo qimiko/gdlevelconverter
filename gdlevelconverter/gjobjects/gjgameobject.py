@@ -27,7 +27,7 @@ class GJGameObject(gjdictionary.GJDictionary):
         ),
         gjdictionary.ObjectDefinition(key="flip_x", index="4", deserialize_as=int),
         gjdictionary.ObjectDefinition(key="flip_y", index="5", deserialize_as=int),
-        gjdictionary.ObjectDefinition(key="rotation", index="6", deserialize_as=int),
+        gjdictionary.ObjectDefinition(key="rotation", index="6", deserialize_as=float, serialize_as=int),
         gjdictionary.ObjectDefinition(
             key="color_trigger_red", index="7", deserialize_as=int
         ),
