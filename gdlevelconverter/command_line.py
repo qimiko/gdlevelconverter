@@ -34,7 +34,7 @@ def load_level_from_target(target: str):
             gmd_string = gmd.read()
 
         if not gmd_string:
-            raise ValueError("Blank file passed for .gmd")
+            raise ValueError("Blank file passed for .gmd/.gdlvl")
 
         level = GJGameLevel.from_gmd(gmd_string)
     elif target.isdigit():
@@ -171,7 +171,7 @@ def _main():
         epilog="hi ~zmx",
     )
 
-    parser.add_argument("target", help="path to .gmd file or level id")
+    parser.add_argument("target", help="path to .gmd/.gdlvl file or level id")
     parser.add_argument(
         "-g",
         "--groups",
