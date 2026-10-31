@@ -15,6 +15,7 @@ class TestGJGameLevel(unittest.TestCase):
 
     TEST_GMD_FILE_NAME = "maki_roll.gmd"
     TEST_GMDV2_FILE_NAME = "kanpyo_roll.gmd"
+    TEST_GDLVL_FILE_NAME = "load_test2.gdlvl"
 
     def test_from_gmd(self):
         """
@@ -56,6 +57,22 @@ class TestGJGameLevel(unittest.TestCase):
         level_description = "exclusive !!!              "
         test_description = base64.b64decode(level.description).decode()
         self.assertEqual(test_description, level_description)
+
+    def test_from_gdlvl(self):
+        """
+        Test loading from the gdlvl format.
+        This format is like the gmdv2 format, but adds an extra step of ZipUtils compression.
+        """
+
+        file_path = pathlib.Path(__file__).parent / self.TEST_GDLVL_FILE_NAME
+
+        gmd_string = ""
+        with open(file_path, "r", encoding="utf8") as gmd:
+            gmd_string = gmd.read()
+
+        level = GJGameLevel.from_gmd(gmd_string)
+        self.assertEqual(level.name, "The Final Hour 2")
+        self.assertEqual(len(level.level_string.objects), 157297)
 
     def test_to_gmd(self):
         """

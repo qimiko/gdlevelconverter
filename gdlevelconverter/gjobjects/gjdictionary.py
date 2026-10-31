@@ -6,7 +6,8 @@ from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Callable, List, Tuple
 import xml.etree.ElementTree
-
+import base64
+import gzip
 
 @dataclass
 class ObjectDefinition:
@@ -100,6 +101,11 @@ def _float_to_rob(value: float):
     """
     return f"{value:g}"
 
+def try_decompress(f: str) -> str:
+    try:
+        return gzip.decompress(base64.urlsafe_b64decode(f)).decode()
+    except:
+        return f
 
 class GJDictionary:
     """
@@ -136,7 +142,7 @@ class GJDictionary:
         """
         Parses a dictionary string (as plist) into a dictionary
         """
-        root = xml.etree.ElementTree.fromstring(string)
+        root = xml.etree.ElementTree.fromstring(try_decompress(string))
 
         # correct new gmd files into old gmd format
         gmd_version = 1
