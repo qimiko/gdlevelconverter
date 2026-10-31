@@ -2,11 +2,14 @@
 Defines test cases for GJLevelString
 """
 
-import unittest
 import pathlib
+import unittest
+
+from gdlevelconverter.conversion import (
+    ConversionOptions,
+    GJGameObjectConversionGroupsByName,
+)
 from gdlevelconverter.gjobjects import GJLevelString
-from gdlevelconverter.conversion import GJGameObjectConversionGroupsByName
-from gdlevelconverter.conversion import ConversionOptions
 
 
 class TestGJLevelString(unittest.TestCase):

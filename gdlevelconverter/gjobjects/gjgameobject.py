@@ -1,13 +1,9 @@
 """
 GJGameObject class definition
 """
-
-from typing import Optional, List
-
-from ..conversion import GJGameObjectConversionGroup
-from ..conversion import TriggerObjectColorConversions
-from .enums import GJCustomColorType
+from ..conversion import GJGameObjectConversionGroup, TriggerObjectColorConversions
 from . import gjdictionary
+from .enums import GJCustomColorType
 
 
 class GJGameObject(gjdictionary.GJDictionary):
@@ -17,7 +13,7 @@ class GJGameObject(gjdictionary.GJDictionary):
 
     UNIFIED_COLOR_TRIGGER_ID = 899
 
-    _definitions = [
+    _definitions = (
         gjdictionary.ObjectDefinition(key="object_id", index="1", deserialize_as=int),
         gjdictionary.ObjectDefinition(
             key="x_position", index="2", deserialize_as=float
@@ -70,7 +66,7 @@ class GJGameObject(gjdictionary.GJDictionary):
         gjdictionary.ObjectDefinition(
             key="color_trigger_target", index="23", deserialize_as=int
         ),
-    ]
+    )
 
     _splitter = ","
 
@@ -79,26 +75,26 @@ class GJGameObject(gjdictionary.GJDictionary):
     x_position: float
     y_position: float
 
-    flip_x: Optional[int]
-    flip_y: Optional[int]
-    rotation: Optional[int]
-    color_trigger_red: Optional[int]
-    color_trigger_green: Optional[int]
-    color_trigger_blue: Optional[int]
-    color_trigger_duration: Optional[float]
-    color_trigger_touch: Optional[int]
-    coin_id: Optional[int]
-    preview_enabled: Optional[int]
-    color_trigger_tint_ground: Optional[int]
-    color_trigger_copy_pcol1: Optional[int]
-    color_trigger_copy_pcol2: Optional[int]
-    color_trigger_blend: Optional[int]
-    legacy_object_color: Optional[GJCustomColorType]
-    editor_group: Optional[int]
-    line_color: Optional[int]
-    object_color: Optional[int]
+    flip_x: int | None
+    flip_y: int | None
+    rotation: int | None
+    color_trigger_red: int | None
+    color_trigger_green: int | None
+    color_trigger_blue: int | None
+    color_trigger_duration: float | None
+    color_trigger_touch: int | None
+    coin_id: int | None
+    preview_enabled: int | None
+    color_trigger_tint_ground: int | None
+    color_trigger_copy_pcol1: int | None
+    color_trigger_copy_pcol2: int | None
+    color_trigger_blend: int | None
+    legacy_object_color: GJCustomColorType | None
+    editor_group: int | None
+    line_color: int | None
+    object_color: int | None
 
-    color_trigger_target: Optional[int]
+    color_trigger_target: int | None
 
     def to_legacy_color(self, conv_white: bool = False) -> bool:
         """
@@ -128,8 +124,8 @@ class GJGameObject(gjdictionary.GJDictionary):
         return False
 
     def remap_to_legacy_id_by_groups(
-        self, groups: List[GJGameObjectConversionGroup]
-    ) -> Optional[GJGameObjectConversionGroup]:
+        self, groups: list[GJGameObjectConversionGroup]
+    ) -> GJGameObjectConversionGroup | None:
         """
         Remaps the object's id based on the ids defined in groups
         Returns the group the object fit, if any
@@ -159,7 +155,7 @@ class GJGameObject(gjdictionary.GJDictionary):
         Returns True if remapping was performed
         """
 
-        if not self.object_id == self.UNIFIED_COLOR_TRIGGER_ID:
+        if self.object_id != self.UNIFIED_COLOR_TRIGGER_ID:
             return False
 
         if not hasattr(self, "color_trigger_target"):

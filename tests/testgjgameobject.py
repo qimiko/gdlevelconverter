@@ -3,8 +3,9 @@ Defines test cases for GJGameObject
 """
 
 import unittest
-from gdlevelconverter.gjobjects import GJGameObject
+
 from gdlevelconverter.conversion import GJGameObjectConversionGroupsByName
+from gdlevelconverter.gjobjects import GJGameObject
 
 
 class TestGJGameObject(unittest.TestCase):

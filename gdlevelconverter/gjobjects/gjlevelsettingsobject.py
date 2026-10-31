@@ -1,12 +1,9 @@
 """
 Definition for GJLevelSettingsObject
 """
-
-from typing import Optional, List
-
 from ..conversion import LevelSettingsColorConversions
-from .gjcolorobject import GJColorObject
 from . import gjdictionary
+from .gjcolorobject import GJColorObject
 
 
 class GJLevelSettingsObject(gjdictionary.GJDictionary):
@@ -14,7 +11,7 @@ class GJLevelSettingsObject(gjdictionary.GJDictionary):
     Deserialized representation of Geometry Dash LevelSettingsObject
     """
 
-    _definitions = [
+    _definitions = (
         gjdictionary.ObjectDefinition(
             key="audio_track", index="kA1", deserialize_as=int
         ),
@@ -169,66 +166,66 @@ class GJLevelSettingsObject(gjdictionary.GJDictionary):
             deserialize_as=gjdictionary.as_list(GJColorObject, "|"),
             serialize_as=gjdictionary.from_list("|"),
         ),
-    ]
+    )
 
     _splitter = ","
 
-    audio_track: Optional[int]
-    start_gamemode: Optional[int]
-    start_mini: Optional[int]
-    start_speed: Optional[int]
-    legacy_col1_blend: Optional[int]
-    background_id: Optional[int]
-    ground_id: Optional[int]
-    start_dual: Optional[int]
-    start_pos: Optional[int]
-    two_player: Optional[int]
-    start_flipped: Optional[int]
-    legacy_col3_blend: Optional[int]
-    song_offset: Optional[float]
-    guidelines: Optional[str]
-    fade_in: Optional[int]
-    fade_out: Optional[int]
+    audio_track: int | None
+    start_gamemode: int | None
+    start_mini: int | None
+    start_speed: int | None
+    legacy_col1_blend: int | None
+    background_id: int | None
+    ground_id: int | None
+    start_dual: int | None
+    start_pos: int | None
+    two_player: int | None
+    start_flipped: int | None
+    legacy_col3_blend: int | None
+    song_offset: float | None
+    guidelines: str | None
+    fade_in: int | None
+    fade_out: int | None
 
-    legacy_bg_r: Optional[int]
-    legacy_bg_g: Optional[int]
-    legacy_bg_b: Optional[int]
-    legacy_ground_r: Optional[int]
-    legacy_ground_g: Optional[int]
-    legacy_ground_b: Optional[int]
-    legacy_line_r: Optional[int]
-    legacy_line_g: Optional[int]
-    legacy_line_b: Optional[int]
-    legacy_obj_r: Optional[int]
-    legacy_obj_g: Optional[int]
-    legacy_obj_b: Optional[int]
-    legacy_col1_r: Optional[int]
-    legacy_col1_g: Optional[int]
-    legacy_col1_b: Optional[int]
-    legacy_bg_custom: Optional[int]
-    legacy_ground_custom: Optional[int]
-    legacy_line_custom: Optional[int]
-    legacy_obj_custom: Optional[int]
-    legacy_col1_custom: Optional[int]
-    legacy_col2_r: Optional[int]
-    legacy_col2_g: Optional[int]
-    legacy_col2_b: Optional[int]
-    legacy_col3_r: Optional[int]
-    legacy_col3_g: Optional[int]
-    legacy_col3_b: Optional[int]
-    legacy_col2_custom: Optional[int]
+    legacy_bg_r: int | None
+    legacy_bg_g: int | None
+    legacy_bg_b: int | None
+    legacy_ground_r: int | None
+    legacy_ground_g: int | None
+    legacy_ground_b: int | None
+    legacy_line_r: int | None
+    legacy_line_g: int | None
+    legacy_line_b: int | None
+    legacy_obj_r: int | None
+    legacy_obj_g: int | None
+    legacy_obj_b: int | None
+    legacy_col1_r: int | None
+    legacy_col1_g: int | None
+    legacy_col1_b: int | None
+    legacy_bg_custom: int | None
+    legacy_ground_custom: int | None
+    legacy_line_custom: int | None
+    legacy_obj_custom: int | None
+    legacy_col1_custom: int | None
+    legacy_col2_r: int | None
+    legacy_col2_g: int | None
+    legacy_col2_b: int | None
+    legacy_col3_r: int | None
+    legacy_col3_g: int | None
+    legacy_col3_b: int | None
+    legacy_col2_custom: int | None
 
-    color_bg: Optional[GJColorObject]
-    color_ground: Optional[GJColorObject]
-    color_line: Optional[GJColorObject]
-    color_object: Optional[GJColorObject]
-    color_1: Optional[GJColorObject]
-    color_2: Optional[GJColorObject]
-    color_3: Optional[GJColorObject]
-    color_4: Optional[GJColorObject]
-    color_3dl: Optional[GJColorObject]
+    color_bg: GJColorObject | None
+    color_ground: GJColorObject | None
+    color_line: GJColorObject | None
+    color_object: GJColorObject | None
+    color_1: GJColorObject | None
+    color_2: GJColorObject | None
+    color_3: GJColorObject | None
+    color_4: GJColorObject | None
+    color_3dl: GJColorObject | None
 
-    color_list: Optional[List[GJColorObject]]
+    color_list: list[GJColorObject] | None
 
     def to_legacy_format(self) -> bool:
         """

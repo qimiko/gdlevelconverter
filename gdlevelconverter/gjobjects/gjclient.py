@@ -1,11 +1,9 @@
 """
 Defines GJClient class
 """
-
-from dataclasses import dataclass
-import urllib.request
 import urllib.parse
-from typing import Dict, Optional
+import urllib.request
+from dataclasses import dataclass
 
 
 @dataclass
@@ -16,14 +14,14 @@ class GJClient:
     """
 
     game_version: int
-    binary_version: Optional[int] = None
+    binary_version: int | None = None
     download_url: str = "https://www.boomlings.com/database/downloadGJLevel22.php"
     upload_url: str = "https://www.boomlings.com/database/uploadGJLevel21.php"
     secret: str = "Wmfd2893gb7"
     udid: str = "S-hi-people"
     user_name: str = "21Reupload"
 
-    def make_req(self, url: str, data: Dict[str, str]):
+    def make_req(self, url: str, data: dict[str, str]):
         """
         Makes a post request a url with data
         """

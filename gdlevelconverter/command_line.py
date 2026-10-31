@@ -7,12 +7,13 @@ import collections
 from importlib.metadata import version
 from pathlib import Path
 
-from .gjobjects import GJClient, GJGameLevel
-from .conversion import ConversionReport, ConversionOptions
 from .conversion import (
+    ConversionOptions,
+    ConversionReport,
     GJGameObjectConversionGroupsByName,
     GJGameObjectConversionSubGroups,
 )
+from .gjobjects import GJClient, GJGameLevel
 
 
 def load_level_from_target(target: str):

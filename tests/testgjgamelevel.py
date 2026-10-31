@@ -2,10 +2,11 @@
 Defines test cases for GJGameLevel
 """
 
-import unittest
-import pathlib
-from gdlevelconverter.gjobjects import GJGameLevel
 import base64
+import pathlib
+import unittest
+
+from gdlevelconverter.gjobjects import GJGameLevel
 
 
 class TestGJGameLevel(unittest.TestCase):

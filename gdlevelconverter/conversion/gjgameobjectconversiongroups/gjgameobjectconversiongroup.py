@@ -3,7 +3,6 @@ Defines the id conversion group class for GJGameObjects
 """
 
 from dataclasses import dataclass
-from typing import List
 
 
 @dataclass(frozen=True)
@@ -23,7 +22,7 @@ class GJGameObjectConversionGroup:
     """
 
     name: str
-    conversions: List[GJGameObjectConversion]
+    conversions: list[GJGameObjectConversion]
     show_hitbox_warning: bool = False
     show_visual_warning: bool = False
 

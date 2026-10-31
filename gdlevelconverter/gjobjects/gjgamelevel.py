@@ -5,9 +5,9 @@ GJGameLevel class definition
 import base64
 import re
 
+from . import gjdictionary
 from .gjclient import GJClient
 from .gjlevelstring import GJLevelString
-from . import gjdictionary
 
 
 class GJGameLevel(gjdictionary.GJDictionary):
@@ -18,7 +18,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
     # pylint: disable=too-many-instance-attributes
     # Geometry Dash levels are known to break convention.
 
-    _definitions = [
+    _definitions = (
         gjdictionary.ObjectDefinition(key="level_id", index="1"),
         gjdictionary.ObjectDefinition(key="name", index="2"),
         gjdictionary.ObjectDefinition(key="description", index="3"),
@@ -36,7 +36,7 @@ class GJGameLevel(gjdictionary.GJDictionary):
             key="custom_song_track", index="35", deserialize_as=int
         ),
         gjdictionary.ObjectDefinition(key="capacity_string", index="36"),
-    ]
+    )
 
     _splitter = ":"
 

@@ -1,13 +1,14 @@
 """
 Functions to aid in conversion to and from a Geometry Dash dictionary type
 """
-
-from abc import abstractmethod
-from dataclasses import dataclass
-from typing import Callable, List, Tuple
-import xml.etree.ElementTree
 import base64
+import binascii
 import gzip
+import xml.etree.ElementTree
+from abc import abstractmethod
+from collections.abc import Callable
+from dataclasses import dataclass
+
 
 @dataclass
 class ObjectDefinition:
@@ -37,7 +38,7 @@ class ObjectDefinition:
 
 
 def class_from_string(
-    string: str, splitter: str, definitions: List[ObjectDefinition], cls: object
+    string: str, splitter: str, definitions: list[ObjectDefinition], cls: object
 ):
     """
     parses the special robtop style array
@@ -45,7 +46,7 @@ def class_from_string(
     - returns dict like {'1': '53', '2': '65', '3': '14.3'}
     """
 
-    split_first_step: List[str] = string.split(splitter)
+    split_first_step: list[str] = string.split(splitter)
 
     for index, current_value in enumerate(split_first_step):
         # if odd then we on index
@@ -88,7 +89,7 @@ def from_list(splitter: str):
     Creates a function that converts a list into string using splitter
     """
 
-    def into_str(obj: List[any]):
+    def into_str(obj: list[any]):
         # gd ends lists with splitter from what i can tell
         return splitter.join([str(x) for x in obj]) + splitter
 
@@ -104,7 +105,9 @@ def _float_to_rob(value: float):
 def try_decompress(f: str) -> str:
     try:
         return gzip.decompress(base64.urlsafe_b64decode(f)).decode()
-    except:
+    except gzip.BadGzipFile:
+        return f
+    except binascii.Error:
         return f
 
 class GJDictionary:
@@ -121,7 +124,7 @@ class GJDictionary:
 
     @property
     @abstractmethod
-    def _definitions(self) -> List[ObjectDefinition]:
+    def _definitions(self) -> list[ObjectDefinition]:
         """
         Defintions for use when converting to/from dictionary
         """
@@ -186,14 +189,14 @@ class GJDictionary:
 
         return val.text
 
-    def __init__(self, string: str = None):
+    def __init__(self, string: str | None = None):
         if string:
             class_from_string(string, self._splitter, self._definitions, self)
 
     def __info_for_key(self, key: str):
         return next((x for x in self._definitions if x.key == key), None)
 
-    def __map_tuple_key_to_index(self, obj: Tuple[str, any]):
+    def __map_tuple_key_to_index(self, obj: tuple[str, any]):
         (key, value) = obj
 
         key_info = self.__info_for_key(key)

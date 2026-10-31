@@ -1,9 +1,7 @@
 """
 Defines conversion options class
 """
-
 from dataclasses import dataclass
-from typing import Optional, List
 
 from .gjgameobjectconversiongroups.gjgameobjectconversiongroup import (
     GJGameObjectConversionGroup,
@@ -16,6 +14,6 @@ class ConversionOptions:
     Options during full level conversion
     """
 
-    groups: List[GJGameObjectConversionGroup]
+    groups: list[GJGameObjectConversionGroup]
     conv_white: bool = False
-    maximum_id: Optional[int] = None
+    maximum_id: int | None = None

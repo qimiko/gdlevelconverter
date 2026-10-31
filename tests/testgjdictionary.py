@@ -5,7 +5,6 @@ Defines GJDictionary test cases using a test object
 import unittest
 
 from gdlevelconverter.gjobjects import gjdictionary
-from typing import List
 
 
 class GJTestObject(gjdictionary.GJDictionary):
@@ -13,7 +12,7 @@ class GJTestObject(gjdictionary.GJDictionary):
     Deserialized representation of Geometry Dash object
     """
 
-    _definitions = [
+    _definitions = (
         gjdictionary.ObjectDefinition(key="object_id", index="1", deserialize_as=int),
         gjdictionary.ObjectDefinition(key="title", index="2"),
         gjdictionary.ObjectDefinition(
@@ -22,7 +21,7 @@ class GJTestObject(gjdictionary.GJDictionary):
             deserialize_as=gjdictionary.as_list(str, ";"),
             serialize_as=gjdictionary.from_list(";"),
         ),
-    ]
+    )
 
     _splitter = ","
 
@@ -30,7 +29,7 @@ class GJTestObject(gjdictionary.GJDictionary):
 
     title: str
 
-    names: List[str]
+    names: list[str]
 
 
 class TestGJDictionary(unittest.TestCase):
@@ -41,7 +40,7 @@ class TestGJDictionary(unittest.TestCase):
     TEST_STRING = "1,3,2,test,3,a;b;c;d;"
     TEST_ID = 3
     TEST_TITLE = "test"
-    TEST_NAMES = ["a", "b", "c", "d"]
+    TEST_NAMES = ("a", "b", "c", "d")
 
     TEST_UNKNOWN_STRING = "k23,unknown"
 
@@ -67,7 +66,7 @@ class TestGJDictionary(unittest.TestCase):
         Tests list conversion from string
         """
         obj = GJTestObject(self.TEST_STRING)
-        self.assertEqual(obj.names, self.TEST_NAMES)
+        self.assertEqual(obj.names, list(self.TEST_NAMES))
 
     def test_serialization(self):
         """

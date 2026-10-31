@@ -2,20 +2,20 @@
 Defines a list of all groups in GJGameObject object id conversion
 """
 
-from .grouplines import GroupLines
-from .groupgroundspikes import GroupGroundSpikes
-from .grouppillars import GroupPillars
-from .groupslabs import GroupSlabs
-from .groupcolor import GroupColor
-from .groupglow import GroupGlow
-from .groupclubstep import GroupClubstep
-from .groupgears import GroupGears
-from .groupgroundhazards import GroupGroundHazards
-from .groupdecoration import GroupDecoration
-from .grouptriggers import GroupTriggers
-from .groupslopes import GroupSlopes
 from .groupcircle import GroupCircle
+from .groupclubstep import GroupClubstep
+from .groupcolor import GroupColor
+from .groupdecoration import GroupDecoration
+from .groupgears import GroupGears
+from .groupglow import GroupGlow
+from .groupgroundhazards import GroupGroundHazards
+from .groupgroundspikes import GroupGroundSpikes
+from .grouplines import GroupLines
+from .grouppillars import GroupPillars
 from .grouppulsing import GroupPulsing
+from .groupslabs import GroupSlabs
+from .groupslopes import GroupSlopes
+from .grouptriggers import GroupTriggers
 
 GJGameObjectConversionGroups = [
     GroupSlopes,

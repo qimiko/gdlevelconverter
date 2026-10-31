@@ -7,7 +7,6 @@ from .gjgameobjectconversiongroup import (
     GJGameObjectConversionGroup,
 )
 
-
 GroupSlabs = GJGameObjectConversionGroup(
     "slabs",
     [

@@ -5,7 +5,7 @@ Defines GJLevelString class
 import base64
 import gzip
 import zlib
-from typing import List
+
 from ..conversion.conversionoptions import ConversionOptions
 from ..conversion.conversionreport import ConversionReport
 from .gjgameobject import GJGameObject
@@ -20,7 +20,7 @@ class GJLevelString:
     OBJECT_SEPARATOR: str = ";"
 
     header: GJLevelSettingsObject
-    objects: List[GJGameObject]
+    objects: list[GJGameObject]
 
     def __init__(self, level):
         object_strings = level.split(self.OBJECT_SEPARATOR)
@@ -78,7 +78,7 @@ class GJLevelString:
         """
         Builds an instance of a level from an encoded string
         """
-        if level.startswith("kS") or level.startswith("kA"):
+        if level.startswith(("kS", "kA")):
             return cls(level)
 
         # convert level to ascii beforehand so errors can be ignored
